@@ -32,8 +32,8 @@
 <style>
 :root {
   --forest:      #2B5336;
-  --forest-dark: #1a2f20;
-  --forest-ink:  #0e1b12;
+  --forest-dark: #21402a;
+  --forest-ink:  #182e1f;
   --sage:        #50795F;
   --sage-pale:   #8fae86;
   --terracotta:  #C08B41;
@@ -129,7 +129,7 @@ body {
 }
 .hero__r:after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(14,27,18,0.96) 0%, rgba(14,27,18,0.30) 38%, rgba(14,27,18,0.10) 100%);
+  background: linear-gradient(to right, rgba(24,46,31,0.96) 0%, rgba(24,46,31,0.30) 38%, rgba(24,46,31,0.10) 100%);
 }
 
 .eyebrow {
@@ -200,7 +200,7 @@ h2.light i { color: var(--terra-glow); }
   line-height: 1.55; letter-spacing: -0.4px;
 }
 .prose--dark { color: rgba(255,255,255,0.72); }
-.prose--dark strong { color: var(--terra-glow); font-weight: 600; }
+.prose--dark strong { color: #ffffff; font-weight: 600; }
 .prose strong { color: var(--forest-ink); font-weight: 700; }
 
 /* Full solid highlight */
@@ -285,7 +285,7 @@ h2.light i { color: var(--terra-glow); }
 .burn__tag {
   position: absolute; inset: auto 0 0 0;
   padding: 12vh 4vw 5vh calc(var(--rail) + 1.5vw);
-  background: linear-gradient(to top, rgba(14,27,18,0.95) 8%, transparent 100%);
+  background: linear-gradient(to top, rgba(24,46,31,0.95) 8%, transparent 100%);
 }
 .burn__tag p {
   font-size: clamp(26px, 3.4vw, 60px); font-weight: 900; color: #fff;
@@ -492,7 +492,7 @@ h2.light i { color: var(--terra-glow); }
     </div>
   </div>
   <div class="hero__r">
-    <img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f0.jpg" alt="A handcrafted barrel sauna interior with a Harvia volcanic stone heater">
+    <img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f0.jpg" alt="A handcrafted barrel sauna interior with a premium volcanic stone heater">
   </div>
 </header>
 
@@ -517,7 +517,7 @@ h2.light i { color: var(--terra-glow); }
           <span class="mark">a directed beam of dry electric heat, pointed at you.</span>
         </p>
         <p class="prose">
-          A volcanic stone sauna does the opposite. A Harvia heater brings a bed of stones up to
+          A volcanic stone sauna does the opposite. A premium heater brings a bed of stones up to
           temperature, and those stones heat the air in the cabin — typically 70 to 90°C. You are
           sitting <strong>inside</strong> the heat rather than in front of it. It surrounds you.
         </p>
@@ -622,14 +622,14 @@ h2.light i { color: var(--terra-glow); }
       <div class="span heater rv">
         <p class="numtag">03 / SIX</p>
         <p class="kick">Fitted as standard</p>
-        <h2>Every barrel gets a <i>Harvia</i></h2>
+        <h2>Every barrel gets a <i>premium heater</i></h2>
         <p class="prose">
           Not an optional extra. Not an upsell at the end of the call. The volcanic stone heater is the
           thing that makes it a sauna rather than a shed, so it goes into every single build that
           leaves the workshop.
         </p>
 
-        <img class="heater__img" src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55cdb79c9b37b5fd4f6a41.png" alt="The Barrel Sauna UK heater range — Harvia and other volcanic stone sauna heaters">
+        <img class="heater__img" src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55cdb79c9b37b5fd4f6a41.png" alt="The Barrel Sauna UK heater range — premium volcanic stone sauna heaters">
 
         <p class="heater__note">More heater options available on request</p>
       </div>
@@ -659,7 +659,7 @@ h2.light i { color: var(--terra-glow); }
               <tr>
                 <td class="rh">Heat source</td>
                 <td class="lose">Electric panels aimed at the body</td>
-                <td class="win">Harvia heater, volcanic stones warming the air</td>
+                <td class="win">Premium heater, volcanic stones warming the air</td>
               </tr>
               <tr>
                 <td class="rh">Cabin temperature</td>
