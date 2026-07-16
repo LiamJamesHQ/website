@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Infrared vs Volcanic Stone Sauna | The Honest Comparison | Barrel Sauna UK</title>
+<meta name="description" content="Infrared and volcanic stone saunas heat you in completely different ways. Here is what that actually feels like, and why most people who try both choose stone.">
+<link rel="canonical" href="https://barrelsaunauk.co.uk/blog/infrared-vs-volcanic-stone-sauna">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Infrared vs Volcanic Stone: The Honest Comparison">
+<meta property="og:description" content="Same word on the label. Completely different experience.">
+<meta property="og:image" content="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f0.jpg">
+<meta property="og:site_name" content="Barrel Sauna UK">
+
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;800;900&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Infrared vs Volcanic Stone Sauna: The Honest Comparison",
+  "image": "https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f0.jpg",
+  "author": { "@type": "Organization", "name": "Barrel Sauna UK" },
+  "publisher": { "@type": "Organization", "name": "Barrel Sauna UK", "url": "https://barrelsaunauk.co.uk" },
+  "datePublished": "2026-07-14",
+  "mainEntityOfPage": "https://barrelsaunauk.co.uk/blog/infrared-vs-volcanic-stone-sauna"
+}
+</script>
+
+<style>
+:root {
+  --forest:      #2B5336;
+  --forest-dark: #1a2f20;
+  --forest-ink:  #0e1b12;
+  --sage:        #50795F;
+  --sage-pale:   #8fae86;
+  --terracotta:  #C08B41;
+  --terra-deep:  #a5722f;
+  --terra-glow:  #E0A85C;
+  --bone:        #F1F2EC;
+  --bone-dark:   #e5e7dd;
+  --panel:       #f7f8f3;
+  --body:        #4a4a4a;
+  --sub:         #8f8f8f;
+  --face: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --rail: 88px;
+  --max:  1760px;
+  --gut:  2.2vw;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bone);
+  font-family: var(--face);
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------- PROGRESS ---------- */
+#progress {
+  position: fixed; top: 0; left: 0; height: 5px; width: 0%;
+  background: linear-gradient(90deg, var(--terra-deep), var(--terra-glow));
+  z-index: 999; transition: width 0.08s linear;
+}
+
+/* ---------- STICKY RAIL ---------- */
+.rail {
+  position: fixed; top: 0; left: 0; bottom: 0; width: var(--rail);
+  z-index: 400; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; mix-blend-mode: difference;
+}
+.rail a {
+  pointer-events: auto; display: block;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: rgba(255,255,255,0.26);
+  transition: all 0.3s ease; position: relative;
+}
+.rail a:hover, .rail a.on { background: var(--terra-glow); transform: scale(1.55); }
+.rail a span {
+  position: absolute; left: 22px; top: 50%; transform: translateY(-50%);
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); white-space: nowrap; opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.rail a:hover span, .rail a.on span { opacity: 1; }
+
+/* ---------- GRID ---------- */
+.full { width: 100%; }
+.inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: calc(var(--rail) + var(--gut));
+  padding-right: var(--gut);
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: 0 4vw;
+}
+.grid > .span { grid-column: 1 / 3; }
+.pad { padding: 8vw 0; }
+.pad--sm { padding: 5vw 0; }
+
+/* ---------- HERO ---------- */
+.hero { display: grid; grid-template-columns: 1.05fr 0.95fr; min-height: 100vh; }
+.hero__l {
+  background: var(--forest-ink);
+  display: flex; align-items: center;
+  padding: 8vw 3vw 8vw calc(var(--rail) + 1.5vw);
+  position: relative; overflow: hidden;
+}
+.hero__l:after {
+  content: ""; position: absolute; width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,168,92,0.16), transparent 66%);
+  bottom: -300px; left: -240px; pointer-events: none;
+}
+.hero__l > div { position: relative; z-index: 1; max-width: 760px; }
+.hero__r { position: relative; overflow: hidden; background: var(--forest-ink); }
+.hero__r img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: saturate(0.92) contrast(1.06);
+}
+.hero__r:after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(14,27,18,0.96) 0%, rgba(14,27,18,0.30) 38%, rgba(14,27,18,0.10) 100%);
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(224,168,92,0.45); color: var(--terra-glow);
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  padding: 10px 18px; margin-bottom: 40px;
+}
+.eyebrow s { text-decoration: none; opacity: 0.4; }
+
+.hero h1 {
+  font-size: clamp(48px, 5.2vw, 98px); font-weight: 900; color: #fff;
+  line-height: 0.94; letter-spacing: -3.4px; margin: 0 0 40px 0;
+  text-transform: uppercase;
+}
+.hero h1 i { font-style: normal; color: var(--terra-glow); display: block; }
+.hero h1 u {
+  text-decoration: none; display: block;
+  font-size: 0.34em; font-weight: 400; letter-spacing: 6px; color: rgba(255,255,255,0.35);
+  margin: 18px 0 14px 0;
+}
+
+.hero__stand {
+  font-size: clamp(16px, 1.05vw, 20px); font-weight: 300; color: rgba(255,255,255,0.72);
+  line-height: 1.75; max-width: 48ch; margin: 0 0 44px 0;
+  padding-left: 22px; border-left: 2px solid var(--terracotta);
+}
+.hero__meta {
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  font-size: 10px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.hero__meta em { font-style: normal; color: var(--terra-glow); }
+.hero__meta s { text-decoration: none; color: rgba(255,255,255,0.15); }
+
+/* ---------- HEADS ---------- */
+.kick {
+  font-size: 10px; font-weight: 700; letter-spacing: 3.4px; text-transform: uppercase;
+  color: var(--terracotta); margin: 0 0 20px 0;
+  display: flex; align-items: center; gap: 14px;
+}
+.kick:before { content: ""; width: 40px; height: 2px; background: var(--terracotta); }
+.kick--dark { color: var(--terra-glow); }
+.kick--dark:before { background: var(--terra-glow); }
+
+h2 {
+  font-size: clamp(34px, 3.9vw, 72px); font-weight: 900; color: var(--forest-ink);
+  line-height: 0.98; letter-spacing: -2.4px; margin: 0 0 32px 0; text-transform: uppercase;
+}
+h2 i { font-style: normal; color: var(--terracotta); }
+h2.light { color: #fff; }
+h2.light i { color: var(--terra-glow); }
+
+.numtag {
+  font-size: 11px; font-weight: 900; letter-spacing: 3px;
+  color: rgba(43,83,54,0.22); margin-bottom: 14px;
+}
+.numtag--light { color: rgba(255,255,255,0.18); }
+
+/* ---------- PROSE ---------- */
+.prose {
+  font-size: clamp(16px, 1.04vw, 19px); font-weight: 400; color: var(--body);
+  line-height: 1.85; margin: 0 0 26px 0;
+}
+.prose:last-child { margin-bottom: 0; }
+.prose--lead {
+  font-size: clamp(19px, 1.5vw, 28px); font-weight: 300; color: var(--forest);
+  line-height: 1.55; letter-spacing: -0.4px;
+}
+.prose--dark { color: rgba(255,255,255,0.72); }
+.prose--dark strong { color: var(--terra-glow); font-weight: 600; }
+.prose strong { color: var(--forest-ink); font-weight: 700; }
+
+/* Full solid highlight */
+.mark {
+  background: var(--terracotta);
+  color: #fff;
+  padding: 3px 8px;
+  font-weight: 500;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.prose--dark .mark { background: var(--terra-glow); color: var(--forest-ink); font-weight: 600; }
+
+/* ---------- BANDS ---------- */
+.band { background: var(--forest); position: relative; overflow: hidden; }
+.band--ink { background: var(--forest-ink); }
+.band--terra { background: linear-gradient(120deg, var(--terra-deep) 0%, var(--terracotta) 52%, var(--terra-glow) 100%); }
+.band--bone { background: var(--bone-dark); }
+.band--white { background: #fff; }
+.glow {
+  position: absolute; width: 780px; height: 780px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,168,92,0.18), transparent 68%);
+  top: -320px; right: -220px; pointer-events: none;
+}
+
+/* ---------- FULL-BLEED VS ---------- */
+.vs { display: grid; grid-template-columns: 1fr 1fr; width: 100%; position: relative; }
+.vs__cell { padding: 7vw 4vw; position: relative; overflow: hidden; }
+.vs__a { background: #dedbd2; }
+.vs__b { background: var(--forest-ink); }
+.vs__b:after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle at 82% 12%, rgba(224,168,92,0.22), transparent 60%);
+  pointer-events: none;
+}
+.vs__cell > * { position: relative; z-index: 1; }
+.vs__inner { max-width: 560px; margin-left: auto; margin-right: auto; }
+.vs__pip {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 5; width: 92px; height: 92px; border-radius: 50%;
+  background: var(--terracotta); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; font-weight: 900; letter-spacing: 1px;
+  border: 8px solid var(--bone);
+}
+.vs__tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  margin: 0 0 22px 0;
+}
+.vs__a .vs__tag { color: #8a8578; }
+.vs__b .vs__tag { color: var(--terra-glow); }
+.vs__temp {
+  font-size: clamp(60px, 6.4vw, 118px); font-weight: 900; line-height: 0.85;
+  letter-spacing: -5px; margin: 0 0 10px 0;
+}
+.vs__a .vs__temp { color: #9c968a; }
+.vs__b .vs__temp { color: #fff; }
+.vs__unit {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  margin: 0 0 32px 0;
+}
+.vs__a .vs__unit { color: #a8a296; }
+.vs__b .vs__unit { color: rgba(255,255,255,0.35); }
+.vs__list { list-style: none; }
+.vs__list li {
+  font-size: clamp(14px, 0.94vw, 17px); line-height: 1.6;
+  padding: 15px 0 15px 30px; position: relative;
+  border-top: 1px solid rgba(0,0,0,0.09);
+}
+.vs__b .vs__list li { border-top-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); }
+.vs__a .vs__list li { color: #6f6a5f; }
+.vs__list li:before { position: absolute; left: 0; top: 15px; font-weight: 900; font-size: 13px; }
+.vs__a .vs__list li:before { content: "✕"; color: #b0a99c; }
+.vs__b .vs__list li:before { content: "✓"; color: var(--terra-glow); }
+
+/* ---------- BURN ---------- */
+.burn { position: relative; width: 100%; overflow: hidden; }
+.burn img {
+  width: 100%; height: 62vh; object-fit: cover; object-position: center 42%;
+  display: block; filter: saturate(1.05) contrast(1.04);
+}
+.burn__tag {
+  position: absolute; inset: auto 0 0 0;
+  padding: 12vh 4vw 5vh calc(var(--rail) + 1.5vw);
+  background: linear-gradient(to top, rgba(14,27,18,0.95) 8%, transparent 100%);
+}
+.burn__tag p {
+  font-size: clamp(26px, 3.4vw, 60px); font-weight: 900; color: #fff;
+  letter-spacing: -1.8px; line-height: 1.02; margin: 0; text-transform: uppercase; max-width: 22ch;
+}
+.burn__tag p i { font-style: normal; color: var(--terra-glow); }
+
+/* ---------- PLAIN FULL-BLEED IMAGE ---------- */
+.plate { width: 100%; overflow: hidden; margin: 0; }
+.plate img {
+  width: 100%; height: 62vh; object-fit: cover; display: block;
+  filter: saturate(0.98) contrast(1.03);
+}
+
+/* ---------- HEATER RANGE ---------- */
+.heater { text-align: center; }
+.heater .kick { justify-content: center; }
+.heater h2 { margin-bottom: 26px; }
+.heater .prose {
+  margin: 0 auto 52px auto; max-width: 62ch;
+  font-size: clamp(17px, 1.15vw, 21px);
+}
+.heater__img { width: 100%; max-width: 1500px; margin: 0 auto; display: block; height: auto; }
+.heater__note {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--sub); margin-top: 34px;
+}
+
+/* ---------- STATS ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; margin-top: 7vw; }
+.stat {
+  padding: 4.5vw 3vw; text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.09);
+}
+.stat:first-child { border-left: 0; }
+.stat b {
+  display: block; font-size: clamp(44px, 5vw, 92px); font-weight: 900; color: var(--terra-glow);
+  letter-spacing: -3.5px; line-height: 0.9; margin-bottom: 16px;
+}
+.stat span {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.6px; text-transform: uppercase;
+  color: rgba(255,255,255,0.38); line-height: 1.8;
+}
+
+/* ---------- TABLE ---------- */
+.tblwrap { width: 100%; overflow-x: auto; margin-top: 3vw; }
+.tbl { width: 100%; border-collapse: collapse; min-width: 760px; }
+.tbl th {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.6px; text-transform: uppercase;
+  padding: 24px 28px; text-align: left; color: #fff;
+}
+.tbl th.h0 { background: var(--forest-ink); width: 22%; }
+.tbl th.h1 { background: #6d6a63; width: 39%; }
+.tbl th.h2 { background: var(--terracotta); width: 39%; }
+.tbl td {
+  padding: 22px 28px; font-size: 16px; line-height: 1.6;
+  border-bottom: 1px solid rgba(58,82,52,0.09); background: #fff; vertical-align: top;
+}
+.tbl td.rh {
+  color: var(--forest-ink); font-weight: 700; background: var(--panel);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+}
+.tbl td.lose { color: #a09a8e; }
+.tbl td.win { color: var(--forest-ink); background: #fdf6ec; font-weight: 600; }
+.tbl tr:last-child td { border-bottom: 0; }
+
+/* ---------- PULL ---------- */
+.pull { text-align: center; padding: 8vw 4vw; position: relative; }
+.pull p {
+  font-size: clamp(32px, 4.6vw, 86px); font-weight: 900; color: var(--forest-ink);
+  line-height: 1.0; letter-spacing: -2.8px; max-width: 18ch; margin: 0 auto;
+  text-transform: uppercase;
+}
+.pull p i { font-style: normal; color: var(--terracotta); }
+.pull--light p { color: #fff; }
+.pull--light p i { color: var(--forest-ink); }
+
+/* ---------- FAIR ---------- */
+.fair { border-left: 5px solid var(--sage); padding-left: 36px; margin-top: 10px; }
+.fair ul { list-style: none; }
+.fair li {
+  font-size: clamp(16px, 1.02vw, 19px); line-height: 1.7; color: var(--body);
+  padding: 18px 0 18px 34px; position: relative;
+  border-bottom: 1px solid rgba(58,82,52,0.09);
+}
+.fair li:last-child { border-bottom: 0; }
+.fair li:before {
+  content: "→"; position: absolute; left: 0; top: 18px;
+  color: var(--sage); font-weight: 700;
+}
+
+/* ---------- CTA ---------- */
+.cta { text-align: center; position: relative; z-index: 1; }
+.cta .kick { justify-content: center; }
+.cta h2 { margin-bottom: 28px; }
+.cta .prose { margin: 0 auto 44px auto; color: rgba(255,255,255,0.8); max-width: 52ch; }
+.btnrow { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block; background: var(--terracotta); color: #fff;
+  padding: 24px 56px;
+  font-family: var(--face); font-size: 12px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn:hover { background: var(--terra-glow); transform: translateY(-3px); }
+.btn--ghost { background: transparent; border: 2px solid rgba(255,255,255,0.4); }
+.btn--ghost:hover { background: #fff; color: var(--forest-ink); border-color: #fff; }
+.reassure {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.4); margin-top: 40px;
+}
+
+/* ---------- FOOT ---------- */
+.foot { background: var(--forest-ink); padding: 40px 4vw; text-align: center; }
+.foot p {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.foot a { color: var(--terra-glow); text-decoration: none; }
+
+/* ---------- REVEAL ---------- */
+.rv { opacity: 0; transform: translateY(34px); transition: opacity 0.85s cubic-bezier(.2,.7,.2,1), transform 0.85s cubic-bezier(.2,.7,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 900px) {
+  :root { --rail: 0px; --gut: 22px; }
+  .rail { display: none; }
+  .inner { padding-left: var(--gut); padding-right: var(--gut); }
+  .grid { grid-template-columns: 1fr; gap: 0; }
+  .grid > .span { grid-column: 1; }
+  .grid > div + div { margin-top: 34px; }
+  .pad { padding: 72px 0; }
+  .pad--sm { padding: 54px 0; }
+
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__l { padding: 84px 22px 66px 22px; order: 2; }
+  .hero__r { order: 1; height: 44vh; }
+  .hero h1 { letter-spacing: -2px; }
+  .hero__stand { padding-left: 16px; }
+
+  h2 { letter-spacing: -1.4px; }
+
+  .vs { grid-template-columns: 1fr; }
+  .vs__cell { padding: 58px 22px; }
+  .vs__pip { width: 70px; height: 70px; font-size: 16px; border-width: 6px; }
+
+  .burn img { height: 44vh; }
+  .burn__tag { padding: 90px 22px 28px 22px; }
+  .plate img { height: 40vh; }
+
+  .heater .prose { margin-bottom: 34px; }
+  .heater__note { margin-top: 24px; }
+
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-left: 0; border-top: 1px solid rgba(255,255,255,0.09); padding: 38px 22px; }
+  .stat:first-child { border-top: 0; }
+
+  .fair { padding-left: 22px; }
+  .pull { padding: 66px 22px; }
+  .btn { padding: 20px 34px; font-size: 11px; }
+  .tbl td { padding: 16px 16px; font-size: 14px; }
+  .tbl th { padding: 18px 16px; }
+  .mark { padding: 2px 6px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ================= RAIL ================= -->
+<nav class="rail">
+  <a href="#s1" data-s="s1"><span>The short answer</span></a>
+  <a href="#s2" data-s="s2"><span>Löyly</span></a>
+  <a href="#s3" data-s="s3"><span>The heaters</span></a>
+  <a href="#s4" data-s="s4"><span>Compared</span></a>
+  <a href="#s5" data-s="s5"><span>Being fair</span></a>
+  <a href="#s6" data-s="s6"><span>The barrel</span></a>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero__l">
+    <div>
+      <div class="eyebrow">Buying Guide <s>·</s> 6 Min Read</div>
+      <h1>
+        Infrared
+        <u>versus</u>
+        <i>Volcanic stone</i>
+      </h1>
+      <p class="hero__stand">
+        They both get called a sauna. They are not the same thing — and the difference matters far
+        more than most people realise before they hand over the money. Here is the plain version,
+        from a workshop that has built hundreds of them.
+      </p>
+      <div class="hero__meta">
+        <em>The Barrel Sauna UK Team</em>
+        <s>/</s>
+        <span>Handcrafted in Wales</span>
+        <s>/</s>
+        <span>July 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero__r">
+    <img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f0.jpg" alt="A handcrafted barrel sauna interior with a Harvia volcanic stone heater">
+  </div>
+</header>
+
+<!-- ================= 01 SHORT ANSWER ================= -->
+<section id="s1" class="full pad">
+  <div class="inner">
+    <div class="grid">
+      <div class="rv">
+        <p class="numtag">01 / SIX</p>
+        <p class="kick">The short answer</p>
+        <h2>Infrared heats <i>you</i>. Stone heats <i>the room</i>.</h2>
+      </div>
+      <div class="rv">
+        <p class="prose prose--lead" style="margin-bottom:32px;">
+          That one line is the whole article. Everything below is just what it means when you are
+          sitting in it.
+        </p>
+        <p class="prose">
+          An infrared cabin uses electric panels to fire infrared waves straight at your body. The air
+          around you stays fairly cool — usually 45 to 60°C. The heat lands on your skin, not in the
+          space. It works much the same way a patio heater or a kebab grill works:
+          <span class="mark">a directed beam of dry electric heat, pointed at you.</span>
+        </p>
+        <p class="prose">
+          A volcanic stone sauna does the opposite. A Harvia heater brings a bed of stones up to
+          temperature, and those stones heat the air in the cabin — typically 70 to 90°C. You are
+          sitting <strong>inside</strong> the heat rather than in front of it. It surrounds you.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FULL-BLEED VS ================= -->
+<section class="vs full rv">
+  <div class="vs__pip">VS</div>
+
+  <div class="vs__cell vs__a">
+    <div class="vs__inner">
+      <p class="vs__tag">Infrared cabin</p>
+      <p class="vs__temp">45–60</p>
+      <p class="vs__unit">Degrees celsius</p>
+      <ul class="vs__list">
+        <li>No steam. No water. Ever.</li>
+        <li>Dry, directed, one-note heat</li>
+        <li>Set the dial and wait</li>
+        <li>Indoor only, in almost every case</li>
+        <li>Panels and electronics degrade</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="vs__cell vs__b">
+    <div class="vs__inner">
+      <p class="vs__tag">Volcanic stone sauna</p>
+      <p class="vs__temp">70–90</p>
+      <p class="vs__unit">Degrees celsius</p>
+      <ul class="vs__list">
+        <li>Water on the stones, whenever you want</li>
+        <li>Enveloping heat you can shape</li>
+        <li>Instant — one ladle changes the room</li>
+        <li>Built for the garden, in any weather</li>
+        <li>Timber and stone. Decades, not years.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 LÖYLY ================= -->
+<section id="s2" class="band band--ink full pad">
+  <div class="glow"></div>
+  <div class="inner" style="position:relative; z-index:1;">
+    <div class="grid">
+      <div class="rv">
+        <p class="numtag numtag--light">02 / SIX</p>
+        <p class="kick kick--dark">The thing infrared cannot do</p>
+        <h2 class="light">Löyly — <i>the water on the stones</i></h2>
+      </div>
+      <div class="rv">
+        <p class="prose prose--dark prose--lead" style="color:rgba(255,255,255,0.9); margin-bottom:32px;">
+          This is the part that decides it for almost everyone who tries both.
+        </p>
+        <p class="prose prose--dark">
+          In a stone sauna you ladle water over the hot stones. It flashes into steam and rolls through
+          the cabin in a wave. The Finns call this <strong>löyly</strong>. It is the whole point of the
+          thing. Humidity spikes, the heat suddenly feels alive, and it is entirely under your hand.
+          Want it hotter and heavier? Add water. Want to sit it out? Don't.
+        </p>
+        <p class="prose prose--dark">
+          You cannot do this in an infrared cabin. There are no stones to pour onto. There is no steam.
+          The heat is whatever the panel is set to, and that is that —
+          <span class="mark">a fixed, dry, one-note burn on the skin.</span>
+          Once you have felt the alternative, it is very hard to go back.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats rv">
+    <div class="stat">
+      <b>0</b>
+      <span>Litres of steam an<br>infrared panel makes</span>
+    </div>
+    <div class="stat">
+      <b>1</b>
+      <span>Ladle to change<br>the entire room</span>
+    </div>
+    <div class="stat">
+      <b>2,000</b>
+      <span>Years the Finns have<br>done it this way</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BURN ================= -->
+<figure class="burn full rv">
+  <img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55f6f3180dde3f86f42497.jpeg" alt="Infrared panel heat on the skin — a dry, directed, burning heat">
+  <div class="burn__tag">
+    <p>It does not warm the room. <i>It cooks the skin.</i></p>
+  </div>
+</figure>
+
+<!-- ================= 03 THE HEATERS ================= -->
+<section id="s3" class="band band--white full pad">
+  <div class="inner">
+    <div class="grid">
+      <div class="span heater rv">
+        <p class="numtag">03 / SIX</p>
+        <p class="kick">Fitted as standard</p>
+        <h2>Every barrel gets a <i>Harvia</i></h2>
+        <p class="prose">
+          Not an optional extra. Not an upsell at the end of the call. The volcanic stone heater is the
+          thing that makes it a sauna rather than a shed, so it goes into every single build that
+          leaves the workshop.
+        </p>
+
+        <img class="heater__img" src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55cdb79c9b37b5fd4f6a41.png" alt="The Barrel Sauna UK heater range — Harvia and other volcanic stone sauna heaters">
+
+        <p class="heater__note">More heater options available on request</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 TABLE ================= -->
+<section id="s4" class="full pad">
+  <div class="inner">
+    <div class="grid">
+      <div class="span rv">
+        <p class="numtag">04 / SIX</p>
+        <p class="kick">Line by line</p>
+        <h2>How they actually <i>compare</i></h2>
+
+        <div class="tblwrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th class="h0">&nbsp;</th>
+                <th class="h1">Infrared cabin</th>
+                <th class="h2">Volcanic stone sauna</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rh">Heat source</td>
+                <td class="lose">Electric panels aimed at the body</td>
+                <td class="win">Harvia heater, volcanic stones warming the air</td>
+              </tr>
+              <tr>
+                <td class="rh">Cabin temperature</td>
+                <td class="lose">45–60°C</td>
+                <td class="win">70–90°C</td>
+              </tr>
+              <tr>
+                <td class="rh">Steam</td>
+                <td class="lose">None. Ever.</td>
+                <td class="win">Water on the stones, whenever you want it</td>
+              </tr>
+              <tr>
+                <td class="rh">Control</td>
+                <td class="lose">Set the dial and wait</td>
+                <td class="win">Instant — one ladle changes the room</td>
+              </tr>
+              <tr>
+                <td class="rh">The feel</td>
+                <td class="lose">Dry, directed, burns the skin</td>
+                <td class="win">Enveloping, alive, yours to shape</td>
+              </tr>
+              <tr>
+                <td class="rh">Sociable</td>
+                <td class="lose">Narrow cabin, sit facing a panel</td>
+                <td class="win">Sit facing each other, benches both sides</td>
+              </tr>
+              <tr>
+                <td class="rh">Outdoors</td>
+                <td class="lose">Almost always indoor only</td>
+                <td class="win">Built for the garden, in any weather</td>
+              </tr>
+              <tr>
+                <td class="rh">Lifespan</td>
+                <td class="lose">Panels and electronics degrade</td>
+                <td class="win">Timber and stone. Decades, not years.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FULL-BLEED PLATE ================= -->
+<figure class="plate full rv">
+  <img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a55d045baf5f6da40d865f5.jpg" alt="A Barrel Sauna UK barrel sauna, handcrafted in Wales">
+</figure>
+
+<!-- ================= PULL ================= -->
+<section class="full rv" style="background:var(--bone-dark);">
+  <div class="pull">
+    <p>Same word on the label. <i>Completely different thing.</i></p>
+  </div>
+</section>
+
+<!-- ================= 05 BEING FAIR ================= -->
+<section id="s5" class="full pad">
+  <div class="inner">
+    <div class="grid">
+      <div class="rv">
+        <p class="numtag">05 / SIX</p>
+        <p class="kick">Being fair about it</p>
+        <h2>When infrared genuinely <i>makes sense</i></h2>
+        <p class="prose">
+          We are not going to pretend infrared has no place. It is the sensible choice in a handful of
+          situations, and we would rather tell you that than sell you the wrong thing.
+        </p>
+      </div>
+      <div class="rv">
+        <div class="fair">
+          <ul>
+            <li>You only have a spare bedroom or a corner of the garage, and no outdoor space at all.</li>
+            <li>You cannot tolerate high heat, or a doctor has told you to keep it gentle.</li>
+            <li>You want something you plug into a standard socket and forget about.</li>
+            <li>Your budget is a few hundred pounds, and it needs to stay there.</li>
+          </ul>
+        </div>
+        <p class="prose" style="margin-top:34px;">
+          If any of those describe you — buy the infrared cabin, with our blessing. It will do a job.
+        </p>
+        <p class="prose">
+          But if you have a garden, and what you are actually after is the thing people mean when they
+          say they love the sauna — the heat, the steam, the ritual, sitting in it with someone until
+          neither of you can take any more —
+          <span class="mark">a panel bolted to a plywood box is not going to give it to you.</span>
+          That is the honest truth. Most people who buy infrared first find it out the expensive way.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 THE BARREL ================= -->
+<section id="s6" class="band band--terra full pad">
+  <div class="inner">
+    <div class="grid">
+      <div class="rv">
+        <p class="numtag numtag--light">06 / SIX</p>
+        <p class="kick" style="color:rgba(255,255,255,0.85);">Why a barrel, specifically</p>
+        <h2 class="light">The shape is <i style="color:var(--forest-ink);">doing work</i></h2>
+      </div>
+      <div class="rv">
+        <p class="prose" style="color:rgba(255,255,255,0.94);">
+          A barrel is not a styling decision. Heat rises and pools — in a square cabin it collects in
+          the corners and sits there, dead, while your feet stay cold. A curved barrel has no corners
+          to trap it. The air circulates continuously, so the heat is even from bench to floor, and the
+          cabin comes up to temperature far faster.
+        </p>
+        <p class="prose" style="color:rgba(255,255,255,0.94);">
+          Less air volume also means less power to run it. And the staved construction — the same
+          principle as a whisky cask — expands and tightens as the timber takes on moisture. It seals
+          itself. Which is why ours sit outside, through a Welsh winter, and keep going.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pull pull--light rv" style="padding-bottom:0;">
+    <p>Not an upgrade. <i>It is the sauna.</i></p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="band full pad cta">
+  <div class="glow"></div>
+  <div class="inner">
+    <p class="kick kick--dark">Come and feel the difference</p>
+    <h2 class="light">Reading about löyly is not <i>standing in it</i></h2>
+    <p class="prose prose--dark">
+      Come to the workshop. Sit in one at full heat. Pour the water on yourself and decide from
+      there. No pressure, no pitch — most people know within about ninety seconds.
+    </p>
+    <div class="btnrow">
+      <a class="btn" href="https://api.leadconnectorhq.com/widget/bookings/showroom-book8ngs" target="_blank" rel="noopener">Book a workshop visit</a>
+      <a class="btn btn--ghost" href="https://barrelsaunauk.co.uk">See the range</a>
+    </div>
+    <p class="reassure">Welsh family business · Handmade to order · Built to last</p>
+  </div>
+</section>
+
+<!-- ================= FOOT ================= -->
+<footer class="foot">
+  <p>Barrel Sauna UK &nbsp;·&nbsp; Handcrafted in Wales &nbsp;·&nbsp; <a href="tel:+442920676731">+44 2920 676731</a></p>
+</footer>
+
+<script>
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = ((window.scrollY / h) * 100) + '%';
+}, { passive: true });
+
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+const links = document.querySelectorAll('.rail a');
+const secs  = [...links].map(a => document.getElementById(a.dataset.s)).filter(Boolean);
+const railIO = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    const link = document.querySelector('.rail a[data-s="' + e.target.id + '"]');
+    if (!link) return;
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('on'));
+      link.classList.add('on');
+    }
+  });
+}, { rootMargin: '-45% 0px -45% 0px' });
+secs.forEach(s => railIO.observe(s));
+</script>
+
+</body>
+</html>
