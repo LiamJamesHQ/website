@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --forest-deep:#1F3D28; --forest:#2B5336; --green-l:#35633F;
+    --mid:#417C51; --mid-l:#4A8A5B;
+    --sage:#50795F; --sage-pale:#8fae86;
+    --honey:#C08B41; --honey-l:#D6A868; --honey-d:#b07d38; --honey-pale:#E2BE85;
+    --thermo:#96502B;
+    --maroon:#5E1F28; --maroon-bg:rgba(94,31,40,0.05);
+    --ink:#3A4240; --ink-l:#5C6663;
+    --hairline:rgba(65,124,81,0.16);
+    --face:'Raleway',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --hero:url("https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a78773688808720198d0c81.png");
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: auto; overflow-x: hidden; }
+
+  body {
+    font-family: var(--face);
+    background: #fff;
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ================= HERO: asymmetric, overlapping ================= */
+
+  .hero {
+    position: relative;
+    padding: 0 0 0;
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* the photo block, offset to the right, not full bleed */
+  .hero-photo {
+    position: absolute;
+    top: 0; right: 0;
+    width: 62%;
+    height: 78vh;
+    background-color: var(--forest);
+    background-image: var(--hero);
+    background-size: cover;
+    background-position: center 42%;
+    border-bottom-left-radius: 4px;
+  }
+  .hero-photo::after {
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(120deg, rgba(31,61,40,0.55) 0%, rgba(31,61,40,0) 50%);
+    border-bottom-left-radius: 4px;
+  }
+
+  /* the green field panel, overlapping the photo's lower-left */
+  .hero-field {
+    position: absolute;
+    left: 0;
+    top: 40vh;
+    width: 58%;
+    background:
+      radial-gradient(120% 160% at 90% 15%, rgba(31,61,40,0.9) 0%, rgba(31,61,40,0) 55%),
+      linear-gradient(115deg, var(--green-l) 0%, var(--forest) 45%, var(--forest-deep) 100%);
+    padding: 64px 60px 56px;
+    box-shadow: 0 40px 80px rgba(31,61,40,0.28);
+    border-radius: 4px;
+  }
+
+  .hero-field .kicker {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--honey-l);
+    margin-bottom: 26px;
+  }
+
+  .hero-field h1 {
+    font-weight: 200;
+    color: #fff;
+    font-size: 5.4rem;
+    letter-spacing: -3px;
+    line-height: 0.92;
+    margin-bottom: 30px;
+  }
+  .hero-field h1 em {
+    font-style: normal;
+    display:block;
+    color: var(--honey-l);
+    font-weight: 300;
+  }
+
+  .hero-field .lede {
+    font-size: 1.08rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.7;
+    max-width: 30rem;
+  }
+
+  /* the big figure, sitting bottom-right of the field, breaking out */
+  .hero-figure {
+    position: absolute;
+    right: -34px;
+    bottom: 44px;
+    text-align: right;
+  }
+  .hero-figure .f {
+    font-size: 4.6rem;
+    font-weight: 200;
+    color: #fff;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .hero-figure .l {
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--honey-l);
+    margin-top: 8px;
+  }
+
+  /* ================= REASONS: big numbered statements ================= */
+
+  .reasons {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 60px 20px;
+  }
+
+  .reasons-head {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 44px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .rgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 64px;
+  }
+
+  .reason {
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .reason .num {
+    font-size: 2.6rem;
+    font-weight: 200;
+    color: var(--honey);
+    line-height: 1;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+    min-width: 2.4rem;
+  }
+  .reason .rtx {
+    font-size: 1.06rem;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .reason .rtx b { font-weight: 500; color: var(--forest); }
+
+  /* maroon warning, a real block not a line */
+  .warnblock {
+    max-width: 1180px;
+    margin: 34px auto 0;
+    padding: 0 60px;
+  }
+  .warnblock .inner {
+    background: linear-gradient(115deg, var(--maroon) 0%, #7a2933 100%);
+    color: #f6e5e7;
+    border-radius: 4px;
+    padding: 34px 40px;
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 24px 50px rgba(94,31,40,0.22);
+  }
+  .warnblock .wi { flex-shrink:0; width: 30px; height: 30px; color: var(--honey-l); }
+  .warnblock .wt { font-size: 1rem; font-weight: 300; line-height: 1.55; }
+  .warnblock .wt b { font-weight: 600; color: #fff; }
+
+  /* ================= FORM: offset, honey-framed ================= */
+
+  .formzone {
+    max-width: 1180px;
+    margin: 70px auto 0;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .formzone-aside h2 {
+    font-weight: 200;
+    font-size: 3rem;
+    color: var(--forest);
+    letter-spacing: -1.5px;
+    line-height: 1.02;
+    margin-bottom: 20px;
+  }
+  .formzone-aside p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-l);
+    line-height: 1.7;
+    max-width: 22rem;
+  }
+  .formzone-aside .tick {
+    margin-top: 26px;
+    font-size: 0.9rem;
+    color: var(--sage);
+    font-weight: 400;
+    display:flex; align-items:center; gap:10px;
+  }
+  .formzone-aside .tick svg { width:18px; height:18px; color: var(--honey); }
+
+  .formcard {
+    background: #fff;
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--honey);
+    border-radius: 4px;
+    padding: 44px 44px 40px;
+    box-shadow: 0 30px 70px rgba(31,61,40,0.08);
+  }
+
+  label {
+    display: block;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--sage);
+  }
+  .field { margin-bottom: 22px; }
+  input {
+    width: 100%;
+    padding: 16px 18px;
+    font-family: var(--face);
+    font-size: 1rem;
+    color: var(--ink);
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    border-radius: 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  input::placeholder { color: #b3b8b1; font-weight: 300; }
+  input:focus { outline: none; border-bottom-color: var(--honey); }
+  input.error { border-bottom-color: var(--maroon); }
+  .err-msg { color: var(--maroon); font-size: 0.82rem; margin-top: 7px; display: none; font-weight: 500; }
+
+  .btn {
+    width: 100%;
+    padding: 19px;
+    background: var(--forest);
+    color: #fff;
+    font-family: var(--face);
+    font-size: 1.04rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.25s, box-shadow 0.25s, transform 0.1s;
+  }
+  .btn:hover { background: var(--forest-deep); box-shadow: 0 12px 30px rgba(31,61,40,0.2); }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { background: #9aa595; cursor: not-allowed; box-shadow: none; }
+
+  .secure { text-align: center; font-size: 0.82rem; color: var(--ink-l); margin-top: 15px; font-weight: 300; }
+  .processing { display: none; text-align: center; color: var(--forest); font-size: 0.9rem; margin-top: 12px; font-weight: 500; }
+
+  /* ================= STEPS: dark green band, the one dark moment ================= */
+
+  .stepsband {
+    margin: 80px 0 0;
+    background:
+      radial-gradient(100% 180% at 85% 10%, rgba(53,99,63,0.5) 0%, rgba(53,99,63,0) 55%),
+      var(--forest-deep);
+    padding: 64px 0 60px;
+  }
+  .stepsband .inner { max-width: 1180px; margin: 0 auto; padding: 0 60px; }
+  .stepsband h3 {
+    font-weight: 200;
+    font-size: 2.6rem;
+    color: #fff;
+    letter-spacing: -1.4px;
+    margin-bottom: 40px;
+  }
+  .stepsband ol {
+    list-style: none;
+    counter-reset: s;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 60px;
+  }
+  .stepsband li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 52px;
+    padding-bottom: 18px;
+    font-size: 0.98rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.55;
+    border-bottom: 1px solid rgba(143,174,134,0.16);
+  }
+  .stepsband li::before {
+    content: counter(s,decimal-leading-zero);
+    position: absolute; left: 0; top: -2px;
+    font-size: 1.1rem; font-weight: 400;
+    color: var(--honey-l);
+    letter-spacing: 1px;
+  }
+
+  /* ================= RESPONSIVE ================= */
+
+  @media (max-width: 980px) {
+    .hero { min-height: auto; display: block; }
+    .hero-photo { position: relative; width: 100%; height: 52vh; border-radius: 0; }
+    .hero-field { position: relative; top: -60px; width: 92%; margin: 0 auto; padding: 48px 34px 44px; }
+    .hero-field h1 { font-size: 3.4rem; letter-spacing: -1.5px; }
+    .hero-figure { position: static; text-align: left; margin-top: 30px; }
+    .hero-figure .f { font-size: 3.2rem; }
+    .reasons { padding: 10px 24px 20px; }
+    .rgrid { grid-template-columns: 1fr; gap: 0; }
+    .warnblock, .formzone, .stepsband .inner { padding-left: 24px; padding-right: 24px; }
+    .formzone { grid-template-columns: 1fr; gap: 32px; margin-top: 48px; }
+    .stepsband ol { grid-template-columns: 1fr; gap: 0; }
+    .stepsband { margin-top: 56px; padding: 48px 0 44px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-photo { height: 42vh; }
+    .hero-field { top: -40px; padding: 34px 22px 30px; }
+    .hero-field .kicker { letter-spacing: 3px; margin-bottom: 18px; }
+    .hero-field h1 { font-size: 2.5rem; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero-field .lede { font-size: 0.98rem; }
+    .hero-figure .f { font-size: 2.6rem; }
+    .reasons-head { margin-bottom: 26px; }
+    .reason { padding: 20px 0; gap: 16px; }
+    .reason .num { font-size: 2rem; min-width: 1.8rem; }
+    .reason .rtx { font-size: 0.96rem; }
+    .warnblock .inner { padding: 24px 22px; gap: 15px; flex-direction: column; align-items: flex-start; }
+    .formzone-aside h2 { font-size: 2.2rem; }
+    .formcard { padding: 30px 22px 28px; }
+    .stepsband h3 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="hero">
+    <div class="hero-photo"></div>
+    <div class="hero-field">
+      <p class="kicker">Commitment Deposit</p>
+      <h1>Reserve<br>Your <em>Place</em></h1>
+      <p class="lede">Almost there. Hold your priority position in the queue while you finalise your sauna design, review your specification, and approve your invoice.</p>
+      <div class="hero-figure">
+        <div class="f">£500</div>
+        <div class="l">Deducted from your invoice</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reasons">
+    <p class="reasons-head">What your deposit does</p>
+    <div class="rgrid">
+      <div class="reason">
+        <span class="num">01</span>
+        <span class="rtx">The <b>£500 deposit</b> is not an additional charge. It is deducted in full from your final invoice.</span>
+      </div>
+      <div class="reason">
+        <span class="num">02</span>
+        <span class="rtx">It reserves your place in the queue for <b>72 hours</b> while the final details of your sauna are confirmed.</span>
+      </div>
+      <div class="reason">
+        <span class="num">03</span>
+        <span class="rtx">No materials are ordered and no production begins until your final invoice is paid in full.</span>
+      </div>
+      <div class="reason">
+        <span class="num">04</span>
+        <span class="rtx">Once your specification is agreed, we issue your final invoice.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="warnblock">
+    <div class="inner">
+      <svg class="wi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <span class="wt">If the invoice is not settled within 72 hours your place may be released. The <b>£500 deposit is non-refundable.</b></span>
+    </div>
+  </div>
+
+  <div class="formzone">
+    <div class="formzone-aside">
+      <h2>Secure your place</h2>
+      <p>Enter your details and pay your commitment deposit. We will be in touch to confirm your final specification.</p>
+      <div class="tick">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        Secure checkout, handled by Stripe
+      </div>
+    </div>
+
+    <div class="formcard">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" placeholder="Your name" autocomplete="name">
+        <div class="err-msg" id="name-err">Please enter your name.</div>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@email.com" autocomplete="email">
+        <div class="err-msg" id="email-err">Please enter a valid email.</div>
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" placeholder="+44" autocomplete="tel">
+        <div class="err-msg" id="phone-err">Please enter your phone number with your country code, starting with +.</div>
+      </div>
+      <button class="btn" id="payBtn" type="button" onclick="submitDeposit()">
+        <span>Pay £500 Commitment Deposit</span>
+      </button>
+      <p class="secure">Secure checkout. Card payments handled by Stripe.</p>
+      <p class="processing" id="processing">Securing your details</p>
+    </div>
+  </div>
+
+  <div class="stepsband">
+    <div class="inner">
+      <h3>What happens next</h3>
+      <ol>
+        <li>Your £500 commitment deposit is received and your place in the queue is reserved for 72 hours.</li>
+        <li>A member of our team will contact you to confirm your final sauna specification and answer any remaining questions.</li>
+        <li>We issue your final invoice based on the agreed specification.</li>
+        <li>Once the final invoice has been paid in full, your order is approved for production.</li>
+        <li>Materials are ordered and your project is scheduled for production.</li>
+        <li>We send your job intake form to capture any final project information.</li>
+        <li>Your dedicated contact remains with you through to delivery and sign off.</li>
+      </ol>
+    </div>
+  </div>
+
+<script>
+  var GHL_WEBHOOK = "https://services.leadconnectorhq.com/hooks/J378Bt0d7JvG2rXks3zo/webhook-trigger/10241606-f478-48d5-9596-fe4ebcccf0ba";
+  var PAYMENT_URL = "https://link.fastpaydirect.com/payment-link/6a705158a655fa0b802a7919";
+  var isSubmitting = false;
+
+  function validEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+  function cleanPhone(phone) { return phone.replace(/[\s()\-]/g, ''); }
+  function validPhone(phone) { return /^\+[1-9]\d{6,14}$/.test(cleanPhone(phone)); }
+
+  function showError(field, errorId) {
+    field.classList.add('error');
+    document.getElementById(errorId).style.display = 'block';
+  }
+  function clearErrors() {
+    ['name','email','phone'].forEach(function(id){ document.getElementById(id).classList.remove('error'); });
+    ['name-err','email-err','phone-err'].forEach(function(id){ document.getElementById(id).style.display = 'none'; });
+  }
+  function redirectToPayment() {
+    try { window.top.location.href = PAYMENT_URL; }
+    catch (e) { window.location.href = PAYMENT_URL; }
+  }
+
+  function submitDeposit() {
+    if (isSubmitting) return;
+    var name = document.getElementById('name');
+    var email = document.getElementById('email');
+    var phone = document.getElementById('phone');
+    var btn = document.getElementById('payBtn');
+    var processing = document.getElementById('processing');
+
+    var nameValue = name.value.trim();
+    var emailValue = email.value.trim();
+    var phoneValue = phone.value.trim();
+    var cleanedPhone = cleanPhone(phoneValue);
+    var ok = true;
+    clearErrors();
+
+    if (!nameValue) { showError(name, 'name-err'); ok = false; }
+    if (!validEmail(emailValue)) { showError(email, 'email-err'); ok = false; }
+    if (!validPhone(phoneValue)) { showError(phone, 'phone-err'); ok = false; }
+    if (!ok) return;
+
+    isSubmitting = true;
+    btn.disabled = true;
+    btn.querySelector('span').textContent = "Redirecting to secure checkout";
+    processing.style.display = 'block';
+
+    var payload = {
+      full_name: nameValue,
+      email: emailValue,
+      phone: cleanedPhone,
+      source: "Deposit Page - Reserve Your Place",
+      deposit_type: "500 commitment deposit",
+      reservation_period: "72 hours",
+      note: "No materials are ordered and no production work begins until final invoice is paid in full."
+    };
+
+    fetch(GHL_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    })
+    .then(function() { redirectToPayment(); })
+    .catch(function() { redirectToPayment(); });
+
+    setTimeout(function() { redirectToPayment(); }, 2500);
+  }
+</script>
+</body>
+</html>
