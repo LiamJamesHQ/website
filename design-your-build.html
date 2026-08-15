@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
+    --ground: #16261C;
     --forest-deep: #1F3D28;
     --forest: #2B5336;
     --green-l: #35633F;
@@ -20,441 +21,599 @@
     --honey-pale: #E2BE85;
     --honey-d: #b07d38;
     --thermo: #96502B;
-    --thermo-l: #C4794A;
     --maroon: #5E1F28;
+    --ink: #3A4240;
+    --ink-l: #5C6663;
+    --hairline-w: rgba(65,124,81,0.28);
+    --edge: clamp(20px, 3vw, 48px);
+    --maxw: 1440px;
     --face: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { background: #16231b; }
+  html { scroll-behavior: smooth; }
+  html, body { background: #ffffff; }
   body {
     font-family: var(--face);
-    color: #e4e6dd;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    /* warm moody ground: forest with thermowood + a whisper of maroon at the edges */
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    position: relative; min-height: 82vh; display: flex; align-items: center;
+    overflow: hidden; background: var(--ground);
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 58%;
+    animation: heroDrift 26s ease-in-out infinite alternate;
+  }
+  @keyframes heroDrift {
+    from { transform: scale(1.0); }
+    to   { transform: scale(1.09); }
+  }
+  .hero-veil {
+    position: absolute; inset: 0;
     background:
-      radial-gradient(circle at 88% 8%, rgba(150,80,43,0.18) 0%, rgba(150,80,43,0) 42%),
-      radial-gradient(circle at 6% 96%, rgba(94,31,40,0.20) 0%, rgba(94,31,40,0) 46%),
-      radial-gradient(circle at 12% 0%, #2b4a34 0%, #1F3D28 38%, #16231b 100%);
-    background-attachment: fixed;
+      linear-gradient(90deg, rgba(22,38,28,0.86) 0%, rgba(22,38,28,0.55) 40%, rgba(22,38,28,0.1) 72%, rgba(22,38,28,0.35) 100%),
+      linear-gradient(0deg, rgba(22,38,28,0.9) 0%, rgba(22,38,28,0) 45%);
   }
-
-  /* HERO */
-  .hero { text-align: center; padding: 72px 24px 52px; max-width: 940px; margin: 0 auto; }
-  .hero-meta { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 14px; }
+  .hero-copy { position: relative; z-index: 2; max-width: var(--maxw); width: 100%; margin: 0 auto; padding: 100px var(--edge); }
+  .hero-dash { width: 44px; height: 2px; background: var(--honey-l); margin-bottom: 20px; }
+  .hero-meta { font-size: 12px; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 20px; }
   .hero-title {
-    font-size: 60px; font-weight: 700; letter-spacing: -1.4px; line-height: 1.16; padding-bottom: 4px; margin-bottom: 20px;
-    background: linear-gradient(96deg, var(--honey-pale) 0%, var(--honey-l) 40%, var(--thermo-l) 100%);
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--honey-l);
+    font-size: clamp(48px, 6vw, 76px); font-weight: 700; letter-spacing: -1.6px; line-height: 1.06;
+    color: #ffffff; margin-bottom: 22px; max-width: 700px;
   }
-  .hero-sub { font-size: 19px; font-weight: 300; color: #d6ddcf; max-width: 570px; margin: 0 auto; line-height: 1.6; }
-
-  /* LAYOUT: form + sticky summary, pushed wide with small edge padding */
-  .layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 360px;
-    gap: 44px;
-    max-width: 1720px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 3vw, 48px) 90px;
-    align-items: start;
+  .hero-title em { font-style: normal; color: var(--honey-l); }
+  .hero-sub { font-size: 19px; font-weight: 300; color: #e9eee4; max-width: 520px; line-height: 1.7; margin-bottom: 30px; }
+  .hero-chips { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-chip {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.6px; color: #eef3ee;
+    border: 1px solid rgba(238,243,238,0.45); border-radius: 22px; padding: 9px 20px;
+    background: rgba(22,38,28,0.35); backdrop-filter: blur(3px);
   }
-  .form-col { min-width: 0; max-width: 1200px; }
 
-  /* QUESTION SECTION */
-  .qsection { padding: 36px 0; border-top: 1px solid rgba(143,174,134,0.14); }
-  .qsection:first-child { border-top: none; padding-top: 10px; }
-  .q-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 12px; }
-  .q-title { font-size: 29px; font-weight: 700; letter-spacing: -0.4px; color: #fff; margin-bottom: 6px; }
-  .req { color: var(--honey-l); }
-  .q-sub { font-size: 15px; font-weight: 300; color: var(--sage-pale); margin-bottom: 24px; max-width: 640px; line-height: 1.5; }
+  /* ============ WIZARD, white ground, generous air ============ */
+  .wizard-wrap { background: #ffffff; }
+  .wizard { max-width: var(--maxw); margin: 0 auto; padding: 88px var(--edge) 110px; }
+  .wizard-grid { display: grid; grid-template-columns: minmax(0, 1fr) 350px; gap: clamp(40px, 5vw, 80px); align-items: start; }
+  .wiz-col { min-width: 0; }
 
-  /* TILE GRID */
-  .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+  /* ============ SEGMENTED PROGRESS ============ */
+  .prog { margin-bottom: 56px; }
+  .prog-meta {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px;
+  }
+  .prog-count { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage); }
+  .prog-name { font-size: 12px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--forest-deep); }
+  .seg-rail { display: flex; gap: 6px; }
+  .seg {
+    flex: 1; border: none; background: none; cursor: pointer; padding: 8px 0;
+    display: block;
+  }
+  .seg i {
+    display: block; height: 2px; border-radius: 1px;
+    background: rgba(31,61,40,0.16); transition: background 0.25s, height 0.25s;
+  }
+  .seg:hover i { background: var(--sage); }
+  .seg.done i { background: var(--forest-deep); }
+  .seg.current i { background: var(--honey); height: 3px; }
+
+  /* ============ SCREENS, no box, content on white ============ */
+  .screen { display: none; position: relative; }
+  .screen.active { display: block; animation: screenIn 0.4s ease both; }
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-word { font-size: 12px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--honey); margin-bottom: 18px; }
+  .q-kicker { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; }
+
+  .q-title { font-size: 42px; font-weight: 700; letter-spacing: -0.8px; color: var(--forest-deep); margin-bottom: 12px; line-height: 1.1; }
+  .q-title em { font-style: normal; color: var(--honey); }
+  .req { color: var(--honey); }
+  .q-sub { font-size: 16px; font-weight: 300; color: var(--ink-l); margin-bottom: 40px; max-width: 620px; line-height: 1.6; }
+
+  /* ============ TILES ============ */
+  .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 22px; }
+  .tile-grid.big { grid-template-columns: repeat(2, 1fr); gap: 28px; }
   .tile {
-    position: relative; border: 2px solid rgba(143,174,134,0.26); border-radius: 16px; overflow: hidden; cursor: pointer;
-    background: rgba(255,255,255,0.04); transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+    position: relative; border: 1px solid var(--hairline-w); border-radius: 16px; overflow: hidden; cursor: pointer;
+    background: #ffffff; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   }
-  .tile:hover { transform: translateY(-3px); border-color: var(--thermo-l); box-shadow: 0 10px 26px rgba(150,80,43,0.28); }
-  .tile.selected { border-color: var(--honey-l); box-shadow: 0 0 0 1px var(--honey-l), 0 10px 30px rgba(192,139,65,0.30); }
-  .tile-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
-  .tile-label { padding: 14px 16px; font-size: 16px; font-weight: 500; color: #eef3ee; }
-  .tile-note { padding: 0 16px 14px; font-size: 12px; font-style: italic; color: var(--sage-pale); line-height: 1.4; margin-top: -6px; }
+  .tile:hover { transform: translateY(-3px); border-color: var(--mid); box-shadow: 0 12px 26px rgba(31,61,40,0.1); }
+  .tile.selected { border: 2px solid var(--honey); }
+  .tile-imgwrap { overflow: hidden; }
+  .tile-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .tile-grid.big .tile-img { aspect-ratio: 4/3; }
+  .tile:hover .tile-img { transform: scale(1.05); }
+  .tile-label { padding: 16px 18px; font-size: 16px; font-weight: 500; color: #2b3430; }
+  .tile-note { padding: 0 18px 16px; font-size: 12px; font-style: italic; color: var(--ink-l); line-height: 1.4; margin-top: -6px; }
   .tile-check {
-    position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%;
-    background: var(--honey); color: #16231b; display: flex; align-items: center; justify-content: center;
-    font-size: 15px; font-weight: 700; opacity: 0; transform: scale(0.6); transition: 0.18s;
+    position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--honey); color: #ffffff; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; opacity: 0; transform: scale(0.5); transition: 0.22s;
   }
   .tile.selected .tile-check { opacity: 1; transform: scale(1); }
   .premium-flag {
-    position: absolute; top: 12px; left: 12px; background: var(--thermo); color: #f4e7dc;
-    font-size: 10px; font-style: italic; font-weight: 600; padding: 4px 12px; border-radius: 20px; z-index: 2;
+    position: absolute; top: 14px; left: 14px; background: #ffffff; color: var(--ink);
+    border: 1px solid var(--hairline-w);
+    font-size: 10px; font-style: italic; font-weight: 600; padding: 4px 13px; border-radius: 20px; z-index: 2;
   }
 
-  /* SELECT + INPUT */
+  /* ============ INPUTS ============ */
   .field-input, .field-select {
-    width: 100%; padding: 18px 20px; font-family: var(--face); font-size: 16px; font-weight: 400; color: #eef3ee;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(143,174,134,0.28); border-radius: 12px; outline: none; transition: border-color 0.15s;
+    width: 100%; padding: 18px 20px; font-family: var(--face); font-size: 16px; font-weight: 400; color: var(--ink);
+    background: #ffffff; border: 1px solid rgba(65,124,81,0.35); border-radius: 12px; outline: none;
+    transition: border-color 0.15s;
   }
-  .field-input:focus, .field-select:focus { border-color: var(--honey-l); }
-  .field-input::placeholder { color: var(--sage-pale); }
-  .field-select option { background: #1F3D28; color: #eef3ee; }
-  input[type="date"].field-input { -webkit-appearance: none; appearance: none; color-scheme: dark; }
-  .field-note { font-size: 13px; font-style: italic; color: var(--sage-pale); margin-top: 12px; }
+  .field-input:focus, .field-select:focus { border-color: var(--forest-deep); }
+  .field-input::placeholder { color: #8a938f; }
+  .field-select option { background: #ffffff; color: var(--ink); }
+  input[type="date"].field-input { -webkit-appearance: none; appearance: none; color-scheme: light; }
+  .field-note { font-size: 13px; font-style: italic; color: var(--ink-l); margin-top: 12px; }
 
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .contact-grid .full { grid-column: 1 / -1; }
-  .field-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--sage-pale); margin-bottom: 10px; }
-  .field-hint { font-size: 13px; font-style: italic; color: var(--sage-pale); margin-bottom: 10px; }
+  .field-label { display: block; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--sage); margin-bottom: 10px; }
+  .field-hint { font-size: 13px; font-style: italic; color: var(--ink-l); margin-bottom: 10px; }
 
-  /* EXAMPLE GRID, wraps, no sideways scroll */
-  .example-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 340px)); gap: 20px; margin-top: 22px; max-width: 1080px; justify-content: start; }
-  .example-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(143,174,134,0.18); border-radius: 16px; padding: 14px; }
+  /* ============ EXAMPLES ============ */
+  .example-wrap { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; margin-top: 28px; }
+  .example-card {
+    background: #ffffff; border: 1px solid var(--hairline-w); border-radius: 16px; padding: 14px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .example-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(31,61,40,0.1); }
   .example-imgs { display: flex; gap: 10px; margin-bottom: 12px; }
-  .example-imgs img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; }
-  .example-imgs.single img { width: 100%; max-width: 200px; }
-  .example-cap { font-size: 13px; font-style: italic; color: var(--sage-pale); line-height: 1.45; }
-  .strip-hint { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage-pale); margin-top: 22px; }
+  .example-imgs img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; min-width: 0; }
+  .example-imgs.single img { width: 100%; }
+  .example-cap { font-size: 13px; font-style: italic; color: var(--ink-l); line-height: 1.45; }
+  .strip-hint { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); margin-top: 32px; }
 
-  /* LENGTH */
-  .length-flex { display: flex; align-items: stretch; gap: 20px; max-width: 520px; }
+  /* ============ LENGTH ============ */
+  .length-flex { display: flex; align-items: stretch; gap: 20px; max-width: 560px; }
   .length-flex .field-input { flex: 1; font-size: 20px; }
-  .length-visual { position: relative; width: 140px; flex-shrink: 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(143,174,134,0.25); }
+  .length-visual { position: relative; width: 160px; flex-shrink: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--hairline-w); }
   .length-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .length-arrows { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none; }
-  .length-arrows span { color: var(--honey-pale); font-size: 28px; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
+  .length-arrows span { color: #ffffff; font-size: 28px; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
 
-  /* CHANGING ROOM */
-  .changing-head { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+  /* ============ CHANGING ROOM ============ */
+  .changing-head { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
   .changing-head img { width: 72px; height: 78px; object-fit: contain; flex-shrink: 0; }
   .changing-head .q-title { margin-bottom: 0; }
 
-  /* SUMMARY PANEL, calm lighter-green surface (Closer Slate green-l), one honey accent */
+  /* ============ CONTROLS ============ */
+  .wiz-controls {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    margin-top: 56px; padding-top: 30px; border-top: 1px solid rgba(31,61,40,0.12);
+  }
+  .btn-nav {
+    font-family: var(--face); font-size: 15px; font-weight: 600; letter-spacing: 0.4px;
+    padding: 15px 34px; border-radius: 11px; cursor: pointer; transition: 0.18s;
+    border: 1px solid rgba(31,61,40,0.35); background: #ffffff; color: var(--forest-deep);
+  }
+  .btn-nav:hover { border-color: var(--forest-deep); }
+  .btn-nav.next { background: var(--forest-deep); border-color: var(--forest-deep); color: #ffffff; font-weight: 600; }
+  .btn-nav.next:hover { background: var(--forest); border-color: var(--forest); }
+  .btn-nav[disabled] { opacity: 0; pointer-events: none; }
+
+  /* ============ SUMMARY, deep green card on white ============ */
   .summary {
-    position: sticky; top: 24px;
+    position: sticky; top: 28px;
     border-radius: 18px;
-    border: 1px solid rgba(143,174,134,0.22);
     overflow: hidden;
-    box-shadow: 0 12px 34px rgba(0,0,0,0.24);
+    background: var(--forest-deep);
+    box-shadow: 0 24px 54px rgba(31,61,40,0.22);
   }
-  .summary-inner {
-    padding: 28px 26px;
-    /* Closer Guide hero: green-l swept into forest with a soft top-corner lift, no honey */
-    background:
-      radial-gradient(130% 120% at 82% 0%, #447552 0%, rgba(68,117,82,0) 52%),
-      linear-gradient(158deg, #35633F 0%, #2B5336 48%, #24492e 100%);
+  .summary-head {
+    background: var(--ground);
+    padding: 22px 26px 18px;
   }
-  .summary-title { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 4px; }
-  .summary-count { font-size: 12px; font-weight: 400; color: var(--sage-pale); margin-bottom: 18px; }
-  .summary-rows { margin-bottom: 20px; }
+  .summary-title { font-size: 13px; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 3px; }
+  .summary-count { font-size: 12px; font-weight: 400; color: var(--sage-pale); }
+  .summary-inner { padding: 24px 26px 28px; }
+  .summary-count-mobile { display: none; }
+  .summary-rows { margin-bottom: 22px; }
   .summary-row { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
   .summary-row:last-child { border-bottom: none; }
   .summary-k { font-size: 11px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--sage-pale); flex-shrink: 0; padding-top: 2px; }
-  .summary-v { font-size: 13px; font-weight: 500; color: #fff; text-align: right; word-break: break-word; }
-  .summary-progress-track { height: 3px; background: rgba(0,0,0,0.22); border-radius: 2px; overflow: hidden; margin-bottom: 22px; }
-  .summary-progress-fill { height: 100%; width: 0%; background: var(--sage-pale); border-radius: 2px; transition: width 0.4s ease; }
+  .summary-v { font-size: 13px; font-weight: 500; color: #ffffff; text-align: right; word-break: break-word; }
+  .summary-progress-track { height: 3px; background: rgba(0,0,0,0.3); border-radius: 2px; overflow: hidden; margin-bottom: 24px; }
+  .summary-progress-fill { height: 100%; width: 0%; border-radius: 2px; transition: width 0.5s ease; background: var(--sage-pale); }
 
   .btn-submit {
-    width: 100%; font-family: var(--face); font-size: 16px; font-weight: 700; letter-spacing: 0.4px;
-    padding: 17px; border-radius: 10px; border: none; cursor: pointer;
-    background: var(--honey); color: #16231b; transition: 0.15s;
+    width: 100%; font-family: var(--face); font-size: 16px; font-weight: 600; letter-spacing: 0.4px;
+    padding: 17px 24px; border-radius: 34px; border: none; cursor: pointer;
+    background: var(--maroon); color: #ffffff; transition: 0.18s;
   }
-  .btn-submit:hover { background: var(--honey-d); }
+  .btn-submit:hover { background: #4a171f; transform: translateY(-1px); }
   .btn-submit:disabled { opacity: 0.6; cursor: default; }
   .error-msg { color: #f0a5a5; font-size: 13px; font-weight: 400; margin-top: 12px; min-height: 16px; text-align: center; }
 
-  .readout {
-    border-radius: 18px; max-width: 640px; margin: 0 auto 90px; display: none; overflow: hidden;
-    border: 1px solid rgba(143,174,134,0.22);
-    box-shadow: 0 12px 34px rgba(0,0,0,0.24);
+  /* ============ WORKSHOP INTERLUDE ============ */
+  .interlude {
+    position: relative; min-height: 78vh; display: flex; align-items: flex-end; overflow: hidden;
+    background-color: var(--ground);
+    background-image: url('https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a80d19799074f5ef655e52d.jpg');
+    background-size: cover; background-position: 50% 35%;
+    background-attachment: fixed;
   }
-  .readout-inner {
-    padding: 42px; text-align: center;
+  .interlude-veil {
+    position: absolute; inset: 0;
     background:
-      radial-gradient(120% 140% at 85% 8%, #3f6e49 0%, rgba(63,110,73,0) 55%),
-      linear-gradient(158deg, #35633F 0%, #2B5336 46%, #24492e 100%);
+      linear-gradient(90deg, rgba(22,38,28,0.75) 0%, rgba(22,38,28,0.32) 45%, rgba(22,38,28,0.05) 100%),
+      linear-gradient(0deg, rgba(22,38,28,0.86) 0%, rgba(22,38,28,0) 55%);
   }
-  .readout h3 { color: var(--honey-l); font-weight: 700; font-size: 28px; margin-bottom: 14px; letter-spacing: -0.4px; }
-  .readout p { font-size: 16px; font-weight: 300; color: #d6ddcf; line-height: 1.6; }
+  .interlude-copy { position: relative; z-index: 2; max-width: var(--maxw); width: 100%; margin: 0 auto; padding: 90px var(--edge) 80px; }
+  .interlude-dash { width: 44px; height: 2px; background: var(--honey-l); margin-bottom: 18px; }
+  .interlude-kicker { font-size: 12px; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: var(--honey-l); margin-bottom: 16px; }
+  .interlude-title {
+    font-size: clamp(34px, 4.2vw, 52px); font-weight: 700; letter-spacing: -1px; color: #ffffff;
+    line-height: 1.1; margin-bottom: 16px; max-width: 620px;
+  }
+  .interlude-title em { font-style: normal; color: var(--honey-l); }
+  .interlude-body { font-size: 18px; font-weight: 300; color: #e9eee4; max-width: 500px; line-height: 1.7; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
 
-  /* MOBILE */
-  @media (max-width: 900px) {
-    .hero { padding: 44px 20px 32px; }
-    .hero-title { font-size: 40px; }
+  .readout-wrap { background: #ffffff; }
+  .readout {
+    border-radius: 18px; max-width: 640px; margin: 0 auto; display: none; overflow: hidden;
+    background: var(--forest-deep);
+    box-shadow: 0 24px 54px rgba(31,61,40,0.22);
+  }
+  .readout-inner { padding: 46px; text-align: center; }
+  .readout h3 { color: var(--honey-l); font-weight: 700; font-size: 32px; margin-bottom: 14px; letter-spacing: -0.4px; }
+  .readout p { font-size: 16px; font-weight: 300; color: #d6ddcf; line-height: 1.6; }
+  .readout.show { display: block; }
+  .readout-wrap.show { padding: 90px var(--edge); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 980px) {
+    .hero { min-height: 66vh; }
+    .hero-copy { padding: 70px 20px 70px; }
     .hero-sub { font-size: 16px; }
-    .layout { grid-template-columns: 1fr; gap: 0; padding: 0 16px 120px; }
-    .form-col { max-width: none; }
-    .q-title { font-size: 23px; }
+    .hero-chips { gap: 8px; }
+    .hero-chip { font-size: 12px; padding: 7px 15px; }
+    .wizard { padding: 56px 20px 140px; }
+    .wizard-grid { grid-template-columns: 1fr; gap: 0; }
+    .prog { margin-bottom: 40px; }
+    .prog-name { display: none; }
+    .seg-rail { gap: 4px; }
+    .q-title { font-size: 29px; }
+    .q-sub { margin-bottom: 30px; }
     .tile-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .tile-label { font-size: 14px; padding: 11px 12px; }
+    .tile-grid.big { grid-template-columns: 1fr; gap: 16px; }
+    .tile-label { font-size: 14px; padding: 12px 14px; }
     .contact-grid { grid-template-columns: 1fr; gap: 16px; }
     .length-flex { flex-direction: column; }
-    .length-visual { width: 100%; height: 120px; }
-    .example-wrap { grid-template-columns: 1fr; max-width: none; }
+    .length-visual { width: 100%; height: 140px; }
+    .example-wrap { grid-template-columns: 1fr; }
+    .wiz-controls { margin-top: 40px; }
+    .interlude { min-height: 56vh; background-attachment: scroll; }
+    .interlude-body { font-size: 16px; }
 
     .summary {
       position: fixed; top: auto; bottom: 0; left: 0; right: 0;
       border-radius: 16px 16px 0 0; z-index: 50;
-      border: none; border-top: 1px solid rgba(143,174,134,0.30);
-      box-shadow: 0 -6px 24px rgba(0,0,0,0.4);
+      box-shadow: 0 -6px 24px rgba(0,0,0,0.35);
     }
+    .summary-head { display: none; }
     .summary-inner {
-      border-radius: 14px 14px 0 0; padding: 12px 18px;
+      padding: 12px 18px;
       display: flex; align-items: center; gap: 14px;
     }
-    .summary-title, .summary-rows, .summary-progress-track { display: none; }
-    .summary-count { margin: 0; font-size: 13px; color: #eef3ee; white-space: nowrap; }
+    .summary-rows, .summary-progress-track { display: none; }
+    .summary-count-mobile { display: block; margin: 0; font-size: 13px; color: #eef3ee; white-space: nowrap; }
     .btn-submit { width: auto; flex: 1; padding: 14px; }
-    .error-msg { position: fixed; bottom: 68px; left: 16px; right: 16px; background: rgba(22,35,27,0.96); padding: 8px 12px; border-radius: 10px; margin: 0; }
+    .error-msg { position: fixed; bottom: 68px; left: 16px; right: 16px; background: rgba(22,38,28,0.96); padding: 8px 12px; border-radius: 10px; margin: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-img { animation: none; }
+    .screen.active { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .interlude { background-attachment: scroll; }
   }
 </style>
 </head>
 <body>
 
+  <!-- HERO -->
   <div class="hero">
-    <p class="hero-meta">Welsh family business · Handmade to order</p>
-    <h1 class="hero-title">Design Your Build</h1>
-    <p class="hero-sub">A few questions to shape your sauna, your way. Windows, heater, layout, the lot. Scroll down and build it as you go.</p>
-  </div>
-
-  <div class="layout" id="buildLayout">
-
-    <div class="form-col">
-
-      <!-- WINDOW -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 1</p>
-        <h2 class="q-title">Choose your window <span class="req">*</span></h2>
-        <p class="q-sub">Pick the glazing that suits the view and the light you want inside.</p>
-        <div class="tile-grid" data-name="window">
-          <div class="tile" data-value="Blackout Globe" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_0176557f786f4274837a8e836bd7c19e~mv2.jpg/v1/crop/x_203,y_263,w_1739,h_1713/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_5531_edited.jpg" alt="Blackout Globe"><div class="tile-check">✓</div><div class="tile-label">Blackout Globe</div></div>
-          <div class="tile" data-value="Tint Globe" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_23c0eddfa8b5481ea501380e51682c8a~mv2.jpg/v1/crop/x_140,y_158,w_660,h_660/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/23.jpg" alt="Tint Globe"><div class="tile-check">✓</div><div class="tile-label">Tint Globe</div></div>
-          <div class="tile" data-value="Flat Glass" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_e284bb7e380a47ed9cf0bfa5240315d1~mv2.jpg/v1/crop/x_52,y_397,w_857,h_857/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-28-22_edited.jpg" alt="Flat Glass"><div class="tile-check">✓</div><div class="tile-label">Flat Glass</div></div>
-          <div class="tile" data-value="Half Glass" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_d74be215dcd1472899a570f872de6ea9~mv2.jpg/v1/crop/x_310,y_0,w_870,h_881/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-09-15-15-13-50.jpg" alt="Half Glass"><div class="tile-check">✓</div><div class="tile-label">Half Glass</div></div>
-          <div class="tile" data-value="2 x Small Windows" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_594aceaaa9f94c6e9647ea1cdfefa1f4~mv2.jpeg/v1/crop/x_252,y_164,w_257,h_252/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/0Rvp23WQ.jpeg" alt="2 x Small Windows"><div class="tile-check">✓</div><div class="tile-label">2 x Small Windows</div></div>
-          <div class="tile" data-value="Wood Wall" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9498f5ff001646b9838851d64b3daaf9~mv2.jpeg/v1/crop/x_0,y_532,w_3024,h_2969/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_2269.jpeg" alt="Wood Wall"><div class="tile-check">✓</div><div class="tile-label">Wood Wall</div></div>
-        </div>
+    <img class="hero-img" src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a80d05d99074f5ef651d0b9.jpg" alt="Barrel sauna with full glass front on decking">
+    <div class="hero-veil"></div>
+    <div class="hero-copy">
+      <div class="hero-dash"></div>
+      <p class="hero-meta">Barrel Sauna UK · Handmade to order</p>
+      <h1 class="hero-title">Design Your <em>Build</em></h1>
+      <p class="hero-sub">A few questions to shape your sauna, your way. Windows, heater, layout, the lot. Build it as you go.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">Windows</span>
+        <span class="hero-chip">Heater</span>
+        <span class="hero-chip">Layout</span>
       </div>
-
-      <!-- ENTRANCE -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 2</p>
-        <h2 class="q-title">Choose your entrance <span class="req">*</span></h2>
-        <p class="q-sub">How you step in, and how much glass the front carries.</p>
-        <div class="tile-grid" data-name="entrance">
-          <div class="tile" data-value="Flush" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9e65f80046074af8aa8d99b671305e5d~mv2.jpg/v1/crop/x_577,y_53,w_1364,h_1370/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/image_6483441%20(1)_edited.jpg" alt="Flush"><div class="tile-check">✓</div><div class="tile-label">Flush</div></div>
-          <div class="tile" data-value="Porch" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_1b8c24fffc004715adc886b34c6c7b49~mv2.jpg/v1/crop/x_251,y_48,w_1024,h_1050/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_1669_edited_edited.jpg" alt="Porch"><div class="tile-check">✓</div><div class="tile-label">Porch</div></div>
-          <div class="tile" data-value="Flush - Full Glass" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_83fcb8357eb642d899ed557616e9092e~mv2.jpeg/v1/crop/x_0,y_75,w_472,h_472/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/-H8kzGoA.jpeg" alt="Flush - Full Glass"><div class="tile-check">✓</div><div class="tile-label">Flush - Full Glass</div></div>
-          <div class="tile" data-value="Porch - Full Glass" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_d961373e1f3d4799aee149713937f163~mv2.jpeg/v1/crop/x_0,y_159,w_1276,h_1276/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/glass%20facade.jpeg" alt="Porch - Full Glass"><div class="tile-check">✓</div><div class="tile-label">Porch - Full Glass</div></div>
-        </div>
-      </div>
-
-      <!-- HEATER -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 3</p>
-        <h2 class="q-title">Choose your heater <span class="req">*</span></h2>
-        <p class="q-sub">Electric for convenience, wood burning for the ritual.</p>
-        <div class="tile-grid" data-name="heater">
-          <div class="tile" data-value="Electric - switch" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_a9e0ef9372054f9ba8d7b2fca401ad44~mv2.jpg/v1/crop/x_427,y_0,w_1707,h_1707/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/sdasdscaled.jpg" alt="Electric - switch"><div class="tile-check">✓</div><div class="tile-label">Electric - switch</div></div>
-          <div class="tile" data-value="Electric - wifi" onclick="pickTile(this)"><div class="premium-flag">Premium option</div><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_fa13829808074dda8609203fba4e0c29~mv2.png/v1/crop/x_43,y_0,w_993,h_993/fill/w_202,h_202,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/hariva.png" alt="Electric - wifi"><div class="tile-check">✓</div><div class="tile-label">Electric - wifi</div></div>
-          <div class="tile" data-value="Wood burning - M3 (Internal feed)" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9f114b673757437dac7f97eb5153df3f~mv2.jpg/v1/crop/x_0,y_254,w_593,h_592/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/60a34a66-bb3a-473a-8b78-cc7ff6b48aa9_edited.jpg" alt="Wood burning M3 Internal"><div class="tile-check">✓</div><div class="tile-label">Wood burning - M3 (Internal feed)</div></div>
-          <div class="tile" data-value="Wood burning - M3 (External feed)" onclick="pickTile(this)"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_ae112c838c8449b9a051b81f7ce2d7f2~mv2.jpg/v1/crop/x_100,y_147,w_288,h_288/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/WhatsApp%20Image%202021-10-28%20at%2011_29_edite.jpg" alt="Wood burning M3 External"><div class="tile-check">✓</div><div class="tile-label">Wood burning - M3 (External feed)</div><div class="tile-note">It's only possible to have an external feed in the center with 2 x benches. Window options are half-moon, wood, or 2 x small.</div></div>
-        </div>
-      </div>
-
-      <!-- LAYOUT -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 4</p>
-        <h2 class="q-title">Select your layout</h2>
-        <p class="q-sub">Where the heater sits and how the benches wrap around it.</p>
-        <select class="field-select" id="layout" onchange="updateSummary()" style="max-width:680px;">
-          <option value="">Select your layout</option>
-          <option value="Side heater - U shaped (3x benches) + interchangeable middle plank for full glass window">Side heater - U shaped (3x benches) + interchangeable middle plank for full glass window</option>
-          <option value="Centre heater (2x side benches)">Centre heater (2x side benches)</option>
-        </select>
-        <p class="strip-hint">Here's some examples</p>
-        <div class="example-wrap">
-          <div class="example-card">
-            <div class="example-imgs">
-              <img src="https://static.wixstatic.com/media/607ff0_05a18b16833f4febba03cde0f84044b9~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-09-15-15-13-50%20(1).jpg" alt="">
-              <img src="https://static.wixstatic.com/media/607ff0_89d73c70b22b4166b8066e1cf9ee0092~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/60a34a66-bb3a-473a-8b78-cc7ff6b48aa9.jpg" alt="">
-            </div>
-            <p class="example-cap">Side heater with 3 X benches + middle plank &amp; half glass window</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs">
-              <img src="https://static.wixstatic.com/media/607ff0_fa766122bd83417389afe435274c83f5~mv2.jpeg/v1/crop/x_0,y_922,w_3024,h_3024/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_6507.jpeg" alt="">
-              <img src="https://static.wixstatic.com/media/607ff0_01005314642043a2b6ab7059834f0321~mv2.jpg/v1/crop/x_0,y_250,w_1500,h_1500/fill/w_202,h_202,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-06-14-19-00-33.jpg" alt="">
-            </div>
-            <p class="example-cap">Side heater with 3 X benches + middle plank &amp; wood rear wall</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs">
-              <img src="https://static.wixstatic.com/media/607ff0_20213533af744c1aac39f12891b20fb4~mv2.jpg/v1/crop/x_200,y_0,w_1200,h_1200/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-33-24.jpg" alt="">
-              <img src="https://static.wixstatic.com/media/607ff0_6f5e3ab2196b499a988a25c4a0ffb722~mv2.jpg/v1/crop/x_200,y_0,w_1200,h_1200/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-33-25%20(3).jpg" alt="">
-            </div>
-            <p class="example-cap">Side heater with 3 X benches (curved back bench flush with globe) + middle plank &amp; full globe window</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs">
-              <img src="https://static.wixstatic.com/media/607ff0_e42c3bf9c72b45e585acee97b48d253c~mv2.jpg/v1/crop/x_189,y_0,w_865,h_865/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/87e3ee02-d353-46b2-a1dc-5736b57da7c3_JPG.jpg" alt="">
-              <img src="https://static.wixstatic.com/media/607ff0_fdff99854c0c4782927d5ee6d9cf2601~mv2.jpg/v1/crop/x_0,y_183,w_1234,h_1234/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/53b2da2f-0520-4849-9806-2bd5c7306036_JPG.jpg" alt="">
-            </div>
-            <p class="example-cap">Side heater with 3 X benches + middle plank &amp; 2 small windows</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs single">
-              <img src="https://static.wixstatic.com/media/607ff0_0102dc0b789740b1917743a15876270c~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_202,h_202,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-31-53.jpg" alt="">
-            </div>
-            <p class="example-cap">Centre heater with 2 X side benches</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- LENGTH -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 5</p>
-        <h2 class="q-title">Total External Length <span class="req">*</span></h2>
-        <p class="q-sub">The full outside length of the barrel, in metres.</p>
-        <div class="length-flex">
-          <input class="field-input" id="length" placeholder="Metres" oninput="updateSummary()">
-          <div class="length-visual">
-            <img src="https://static.wixstatic.com/media/607ff0_db64b68fefe64b16813d568138ef229f~mv2.jpg/v1/crop/x_0,y_799,w_2268,h_2434/fill/w_117,h_126,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_E5520.jpg" alt="Total external length">
-            <div class="length-arrows"><span>&#8592;</span><span>&#8594;</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CHANGING ROOM -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 6</p>
-        <div class="changing-head">
-          <img src="https://static.wixstatic.com/media/607ff0_683c1d6337aa4201b4b91a0d3346c690~mv2.png/v1/crop/x_17,y_0,w_466,h_500/fill/w_117,h_126,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Untitled%20design%20-%202024-09-11T182138_144.png" alt="Changing room">
-          <h2 class="q-title">Include a changing room?</h2>
-        </div>
-        <p class="q-sub">A dry space to change before and after. For sauna sizes 3.5+.</p>
-        <select class="field-select" id="changingroom" onchange="updateSummary()" style="max-width:520px;">
-          <option value="">Select an option</option>
-          <option value="No, I want all the space for sauna area">No, I want all the space for sauna area</option>
-          <option value="Yes, 1m changing room">Yes, 1m changing room</option>
-          <option value="Yes, 1.5m changing room">Yes, 1.5m changing room</option>
-        </select>
-      </div>
-
-      <!-- BASE -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 7</p>
-        <h2 class="q-title">Choose your base</h2>
-        <p class="q-sub">What the sauna will sit on. Skip it if you already have a base.</p>
-        <select class="field-select" id="base" onchange="updateSummary()" style="max-width:520px;">
-          <option value="">Add a base</option>
-          <option value="no base, I have one">no base, I have one</option>
-          <option value="I require wooden decking base">I require wooden decking base</option>
-          <option value="I require PVC Decking">I require PVC Decking</option>
-          <option value="I require concrete base">I require concrete base</option>
-          <option value="I require a Trailer">I require a Trailer</option>
-        </select>
-        <p class="strip-hint">Here's some examples</p>
-        <div class="example-wrap">
-          <div class="example-card">
-            <div class="example-imgs single"><img src="https://static.wixstatic.com/media/88aefc_b52587a5e1974faa99ca7d3099d344c2~mv2.jpg/v1/crop/x_0,y_400,w_1200,h_1200/fill/w_152,h_152,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-32-16_edited.jpg" alt=""></div>
-            <p class="example-cap">PVC Acrylic decking base <span style="color:var(--honey-l);font-style:normal;">· Premium option</span></p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_bc56927a64b748eb863c881bd0d6843a~mv2.jpeg/v1/crop/x_128,y_0,w_768,h_768/fill/w_152,h_152,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/51d79462-a8e9-4eda-b0af-7a59c9223226.jpeg" alt=""></div>
-            <p class="example-cap">Pine wood decking base</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_11b3dc141e89485cbf362599677b3d96~mv2.jpeg/v1/crop/x_66,y_0,w_168,h_168/fill/w_152,h_152,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/images.jpeg" alt=""></div>
-            <p class="example-cap">Concrete base with stones</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_9ddfb38a1a754faaab4ee6c8418cbaeb~mv2.jpg/v1/crop/x_110,y_0,w_660,h_660/fill/w_152,h_152,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/gallery__1353331135.jpg" alt=""></div>
-            <p class="example-cap">Concrete base</p>
-          </div>
-          <div class="example-card">
-            <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_fa8660afd5a44319a9f0eb503d479172~mv2.jpg/v1/crop/x_380,y_0,w_1289,h_1289/fill/w_152,h_152,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/44761d8a-5fd9-4a3f-9d9d-907bf7fc6cae_JPG.jpg" alt=""></div>
-            <p class="example-cap">Sauna mounted on trailer</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- COMPLETION DATE -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 8</p>
-        <h2 class="q-title">When are you hoping for your build to be completed by?</h2>
-        <p class="q-sub">A rough target is fine. It helps us plan the queue.</p>
-        <input class="field-input" type="date" id="completion" onchange="updateSummary()" style="max-width:320px;">
-      </div>
-
-      <!-- PURPOSE -->
-      <div class="qsection">
-        <p class="q-eyebrow">Step 9</p>
-        <h2 class="q-title">What's this sauna for? <span class="req">*</span></h2>
-        <p class="q-sub">Tells us whether it's a personal build or a commercial one.</p>
-        <select class="field-select" id="sauna_purpose" onchange="updateSummary()" style="max-width:420px;">
-          <option value="">Select an option</option>
-          <option value="Personal use">Personal use</option>
-          <option value="AirBnB">AirBnB</option>
-          <option value="Glamping / holiday let">Glamping / holiday let</option>
-          <option value="Gym / wellness facility">Gym / wellness facility</option>
-          <option value="Other business use">Other business use</option>
-        </select>
-      </div>
-
-      <!-- CONTACT -->
-      <div class="qsection">
-        <p class="q-eyebrow">Almost there</p>
-        <h2 class="q-title">Where do we send it?</h2>
-        <p class="q-sub">Your details, so we can talk your design over with you.</p>
-        <div class="contact-grid">
-          <div>
-            <label class="field-label">Name <span class="req">*</span></label>
-            <input class="field-input" id="name" placeholder="Full Name">
-          </div>
-          <div>
-            <label class="field-label">Delivery Address</label>
-            <input class="field-input" id="address" placeholder="Delivery Address">
-          </div>
-          <div>
-            <label class="field-label">Email <span class="req">*</span></label>
-            <input class="field-input" id="email" placeholder="Email" type="email">
-          </div>
-          <div>
-            <label class="field-label">Phone <span class="req">*</span></label>
-            <input class="field-input" id="phone" placeholder="+44 7700 900000">
-          </div>
-          <div class="full">
-            <p class="field-hint">Please include your country code, starting with +. UK numbers start +44, e.g. +44 7700 900000.</p>
-          </div>
-          <div class="full">
-            <label class="field-label">Any message for us?</label>
-            <textarea class="field-input" id="message" rows="4" placeholder="Any message for us?"></textarea>
-          </div>
-        </div>
-      </div>
-
     </div>
-
-    <!-- SUMMARY PANEL -->
-    <aside class="summary" id="summary">
-      <div class="summary-inner">
-        <p class="summary-title">Your build</p>
-        <p class="summary-count" id="summaryCount">Nothing selected yet</p>
-        <div class="summary-progress-track"><div class="summary-progress-fill" id="summaryFill"></div></div>
-        <div class="summary-rows" id="summaryRows"></div>
-        <button class="btn-submit" id="submitBtn" onclick="submitForm()">Submit my design</button>
-        <p class="error-msg" id="errorMsg"></p>
-      </div>
-    </aside>
-
   </div>
 
-  <div class="readout" id="readout">
-    <div class="readout-inner">
-      <h3>Thank you!</h3>
-      <p>Your design has been sent through. We'll be in touch shortly to talk it over.</p>
+  <!-- WIZARD -->
+  <div class="wizard-wrap">
+    <div class="wizard" id="buildLayout">
+      <div class="wizard-grid">
+
+        <div class="wiz-col">
+
+          <div class="prog">
+            <div class="prog-meta">
+              <span class="prog-count" id="progCount">Step 01 of 09</span>
+              <span class="prog-name" id="progName">Window</span>
+            </div>
+            <div class="seg-rail" id="stepsNav"></div>
+          </div>
+
+          <!-- SCREEN 0 · WINDOW -->
+          <div class="screen" data-step="0">
+            <p class="q-word">ONE</p>
+            <h2 class="q-title">Choose your <em>window</em> <span class="req">*</span></h2>
+            <p class="q-sub">Pick the glazing that suits the view and the light you want inside.</p>
+            <div class="tile-grid big" data-name="window">
+              <div class="tile" data-value="Blackout Globe" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_0176557f786f4274837a8e836bd7c19e~mv2.jpg/v1/crop/x_203,y_263,w_1739,h_1713/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_5531_edited.jpg" alt="Blackout Globe"></div><div class="tile-check">✓</div><div class="tile-label">Blackout Globe</div></div>
+              <div class="tile" data-value="Tint Globe" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_23c0eddfa8b5481ea501380e51682c8a~mv2.jpg/v1/crop/x_140,y_158,w_660,h_660/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/23.jpg" alt="Tint Globe"></div><div class="tile-check">✓</div><div class="tile-label">Tint Globe</div></div>
+              <div class="tile" data-value="Flat Glass" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_e284bb7e380a47ed9cf0bfa5240315d1~mv2.jpg/v1/crop/x_52,y_397,w_857,h_857/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-28-22_edited.jpg" alt="Flat Glass"></div><div class="tile-check">✓</div><div class="tile-label">Flat Glass</div></div>
+              <div class="tile" data-value="Half Glass" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_d74be215dcd1472899a570f872de6ea9~mv2.jpg/v1/crop/x_310,y_0,w_870,h_881/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-09-15-15-13-50.jpg" alt="Half Glass"></div><div class="tile-check">✓</div><div class="tile-label">Half Glass</div></div>
+              <div class="tile" data-value="2 x Small Windows" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_594aceaaa9f94c6e9647ea1cdfefa1f4~mv2.jpeg/v1/crop/x_252,y_164,w_257,h_252/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/0Rvp23WQ.jpeg" alt="2 x Small Windows"></div><div class="tile-check">✓</div><div class="tile-label">2 x Small Windows</div></div>
+              <div class="tile" data-value="Wood Wall" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9498f5ff001646b9838851d64b3daaf9~mv2.jpeg/v1/crop/x_0,y_532,w_3024,h_2969/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_2269.jpeg" alt="Wood Wall"></div><div class="tile-check">✓</div><div class="tile-label">Wood Wall</div></div>
+            </div>
+          </div>
+
+          <!-- SCREEN 1 · ENTRANCE -->
+          <div class="screen" data-step="1">
+            <p class="q-word">TWO</p>
+            <h2 class="q-title">Choose your <em>entrance</em> <span class="req">*</span></h2>
+            <p class="q-sub">How you step in, and how much glass the front carries.</p>
+            <div class="tile-grid big" data-name="entrance">
+              <div class="tile" data-value="Flush" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9e65f80046074af8aa8d99b671305e5d~mv2.jpg/v1/crop/x_577,y_53,w_1364,h_1370/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/image_6483441%20(1)_edited.jpg" alt="Flush"></div><div class="tile-check">✓</div><div class="tile-label">Flush</div></div>
+              <div class="tile" data-value="Porch" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_1b8c24fffc004715adc886b34c6c7b49~mv2.jpg/v1/crop/x_251,y_48,w_1024,h_1050/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_1669_edited_edited.jpg" alt="Porch"></div><div class="tile-check">✓</div><div class="tile-label">Porch</div></div>
+              <div class="tile" data-value="Flush - Full Glass" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_83fcb8357eb642d899ed557616e9092e~mv2.jpeg/v1/crop/x_0,y_75,w_472,h_472/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/-H8kzGoA.jpeg" alt="Flush - Full Glass"></div><div class="tile-check">✓</div><div class="tile-label">Flush - Full Glass</div></div>
+              <div class="tile" data-value="Porch - Full Glass" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_d961373e1f3d4799aee149713937f163~mv2.jpeg/v1/crop/x_0,y_159,w_1276,h_1276/fill/w_800,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/glass%20facade.jpeg" alt="Porch - Full Glass"></div><div class="tile-check">✓</div><div class="tile-label">Porch - Full Glass</div></div>
+            </div>
+          </div>
+
+          <!-- SCREEN 2 · HEATER -->
+          <div class="screen" data-step="2">
+            <p class="q-word">THREE</p>
+            <h2 class="q-title">Choose your <em>heater</em> <span class="req">*</span></h2>
+            <p class="q-sub">Electric for convenience, wood burning for the ritual.</p>
+            <div class="tile-grid" data-name="heater">
+              <div class="tile" data-value="Electric - switch" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_a9e0ef9372054f9ba8d7b2fca401ad44~mv2.jpg/v1/crop/x_427,y_0,w_1707,h_1707/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/sdasdscaled.jpg" alt="Electric - switch"></div><div class="tile-check">✓</div><div class="tile-label">Electric - switch</div></div>
+              <div class="tile" data-value="Electric - wifi" onclick="pickTile(this)"><div class="premium-flag">Premium option</div><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_fa13829808074dda8609203fba4e0c29~mv2.png/v1/crop/x_43,y_0,w_993,h_993/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/hariva.png" alt="Electric - wifi"></div><div class="tile-check">✓</div><div class="tile-label">Electric - wifi</div></div>
+              <div class="tile" data-value="Wood burning - M3 (Internal feed)" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_9f114b673757437dac7f97eb5153df3f~mv2.jpg/v1/crop/x_0,y_254,w_593,h_592/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/60a34a66-bb3a-473a-8b78-cc7ff6b48aa9_edited.jpg" alt="Wood burning M3 Internal"></div><div class="tile-check">✓</div><div class="tile-label">Wood burning - M3 (Internal feed)</div></div>
+              <div class="tile" data-value="Wood burning - M3 (External feed)" onclick="pickTile(this)"><div class="tile-imgwrap"><img class="tile-img" src="https://static.wixstatic.com/media/607ff0_ae112c838c8449b9a051b81f7ce2d7f2~mv2.jpg/v1/crop/x_100,y_147,w_288,h_288/fill/w_600,h_600,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/WhatsApp%20Image%202021-10-28%20at%2011_29_edite.jpg" alt="Wood burning M3 External"></div><div class="tile-check">✓</div><div class="tile-label">Wood burning - M3 (External feed)</div><div class="tile-note">It's only possible to have an external feed in the center with 2 x benches. Window options are half-moon, wood, or 2 x small.</div></div>
+            </div>
+          </div>
+
+          <!-- SCREEN 3 · LAYOUT -->
+          <div class="screen" data-step="3">
+            <p class="q-word">FOUR</p>
+            <h2 class="q-title">Select your <em>layout</em></h2>
+            <p class="q-sub">Where the heater sits and how the benches wrap around it.</p>
+            <select class="field-select" id="layout" onchange="updateSummary()" style="max-width:680px;">
+              <option value="">Select your layout</option>
+              <option value="Side heater - U shaped (3x benches) + interchangeable middle plank for full glass window">Side heater - U shaped (3x benches) + interchangeable middle plank for full glass window</option>
+              <option value="Centre heater (2x side benches)">Centre heater (2x side benches)</option>
+            </select>
+            <p class="strip-hint">Here's some examples</p>
+            <div class="example-wrap">
+              <div class="example-card">
+                <div class="example-imgs">
+                  <img src="https://static.wixstatic.com/media/607ff0_05a18b16833f4febba03cde0f84044b9~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-09-15-15-13-50%20(1).jpg" alt="">
+                  <img src="https://static.wixstatic.com/media/607ff0_89d73c70b22b4166b8066e1cf9ee0092~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/60a34a66-bb3a-473a-8b78-cc7ff6b48aa9.jpg" alt="">
+                </div>
+                <p class="example-cap">Side heater with 3 X benches + middle plank &amp; half glass window</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs">
+                  <img src="https://static.wixstatic.com/media/607ff0_fa766122bd83417389afe435274c83f5~mv2.jpeg/v1/crop/x_0,y_922,w_3024,h_3024/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_6507.jpeg" alt="">
+                  <img src="https://static.wixstatic.com/media/607ff0_01005314642043a2b6ab7059834f0321~mv2.jpg/v1/crop/x_0,y_250,w_1500,h_1500/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-06-14-19-00-33.jpg" alt="">
+                </div>
+                <p class="example-cap">Side heater with 3 X benches + middle plank &amp; wood rear wall</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs">
+                  <img src="https://static.wixstatic.com/media/607ff0_20213533af744c1aac39f12891b20fb4~mv2.jpg/v1/crop/x_200,y_0,w_1200,h_1200/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-33-24.jpg" alt="">
+                  <img src="https://static.wixstatic.com/media/607ff0_6f5e3ab2196b499a988a25c4a0ffb722~mv2.jpg/v1/crop/x_200,y_0,w_1200,h_1200/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-33-25%20(3).jpg" alt="">
+                </div>
+                <p class="example-cap">Side heater with 3 X benches (curved back bench flush with globe) + middle plank &amp; full globe window</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs">
+                  <img src="https://static.wixstatic.com/media/607ff0_e42c3bf9c72b45e585acee97b48d253c~mv2.jpg/v1/crop/x_189,y_0,w_865,h_865/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/87e3ee02-d353-46b2-a1dc-5736b57da7c3_JPG.jpg" alt="">
+                  <img src="https://static.wixstatic.com/media/607ff0_fdff99854c0c4782927d5ee6d9cf2601~mv2.jpg/v1/crop/x_0,y_183,w_1234,h_1234/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/53b2da2f-0520-4849-9806-2bd5c7306036_JPG.jpg" alt="">
+                </div>
+                <p class="example-cap">Side heater with 3 X benches + middle plank &amp; 2 small windows</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs single">
+                  <img src="https://static.wixstatic.com/media/607ff0_0102dc0b789740b1917743a15876270c~mv2.jpg/v1/crop/x_0,y_200,w_1200,h_1200/fill/w_500,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-31-53.jpg" alt="">
+                </div>
+                <p class="example-cap">Centre heater with 2 X side benches</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 4 · LENGTH -->
+          <div class="screen" data-step="4">
+            <p class="q-word">FIVE</p>
+            <h2 class="q-title">Total External <em>Length</em> <span class="req">*</span></h2>
+            <p class="q-sub">The full outside length of the barrel, in metres.</p>
+            <div class="length-flex">
+              <input class="field-input" id="length" placeholder="Metres" oninput="updateSummary()">
+              <div class="length-visual">
+                <img src="https://static.wixstatic.com/media/607ff0_db64b68fefe64b16813d568138ef229f~mv2.jpg/v1/crop/x_0,y_799,w_2268,h_2434/fill/w_351,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/IMG_E5520.jpg" alt="Total external length">
+                <div class="length-arrows"><span>&#8592;</span><span>&#8594;</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 5 · CHANGING ROOM -->
+          <div class="screen" data-step="5">
+            <p class="q-word">SIX</p>
+            <div class="changing-head">
+              <img src="https://static.wixstatic.com/media/607ff0_683c1d6337aa4201b4b91a0d3346c690~mv2.png/v1/crop/x_17,y_0,w_466,h_500/fill/w_117,h_126,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Untitled%20design%20-%202024-09-11T182138_144.png" alt="Changing room">
+              <h2 class="q-title">Include a <em>changing room</em>?</h2>
+            </div>
+            <p class="q-sub">A dry space to change before and after. For sauna sizes 3.5+.</p>
+            <select class="field-select" id="changingroom" onchange="updateSummary()" style="max-width:520px;">
+              <option value="">Select an option</option>
+              <option value="No, I want all the space for sauna area">No, I want all the space for sauna area</option>
+              <option value="Yes, 1m changing room">Yes, 1m changing room</option>
+              <option value="Yes, 1.5m changing room">Yes, 1.5m changing room</option>
+            </select>
+          </div>
+
+          <!-- SCREEN 6 · BASE -->
+          <div class="screen" data-step="6">
+            <p class="q-word">SEVEN</p>
+            <h2 class="q-title">Choose your <em>base</em></h2>
+            <p class="q-sub">What the sauna will sit on. Skip it if you already have a base.</p>
+            <select class="field-select" id="base" onchange="updateSummary()" style="max-width:520px;">
+              <option value="">Add a base</option>
+              <option value="no base, I have one">no base, I have one</option>
+              <option value="I require wooden decking base">I require wooden decking base</option>
+              <option value="I require PVC Decking">I require PVC Decking</option>
+              <option value="I require concrete base">I require concrete base</option>
+              <option value="I require a Trailer">I require a Trailer</option>
+            </select>
+            <p class="strip-hint">Here's some examples</p>
+            <div class="example-wrap">
+              <div class="example-card">
+                <div class="example-imgs single"><img src="https://static.wixstatic.com/media/88aefc_b52587a5e1974faa99ca7d3099d344c2~mv2.jpg/v1/crop/x_0,y_400,w_1200,h_1200/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/PHOTO-2023-08-22-18-32-16_edited.jpg" alt=""></div>
+                <p class="example-cap">PVC Acrylic decking base <span style="color:var(--honey);font-style:normal;">· Premium option</span></p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_bc56927a64b748eb863c881bd0d6843a~mv2.jpeg/v1/crop/x_128,y_0,w_768,h_768/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/51d79462-a8e9-4eda-b0af-7a59c9223226.jpeg" alt=""></div>
+                <p class="example-cap">Pine wood decking base</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_11b3dc141e89485cbf362599677b3d96~mv2.jpeg/v1/crop/x_66,y_0,w_168,h_168/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/images.jpeg" alt=""></div>
+                <p class="example-cap">Concrete base with stones</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_9ddfb38a1a754faaab4ee6c8418cbaeb~mv2.jpg/v1/crop/x_110,y_0,w_660,h_660/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/gallery__1353331135.jpg" alt=""></div>
+                <p class="example-cap">Concrete base</p>
+              </div>
+              <div class="example-card">
+                <div class="example-imgs single"><img src="https://static.wixstatic.com/media/607ff0_fa8660afd5a44319a9f0eb503d479172~mv2.jpg/v1/crop/x_380,y_0,w_1289,h_1289/fill/w_400,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/44761d8a-5fd9-4a3f-9d9d-907bf7fc6cae_JPG.jpg" alt=""></div>
+                <p class="example-cap">Sauna mounted on trailer</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 7 · COMPLETION DATE -->
+          <div class="screen" data-step="7">
+            <p class="q-word">EIGHT</p>
+            <h2 class="q-title">When are you hoping for your build to be <em>completed</em> by?</h2>
+            <p class="q-sub">A rough target is fine. It helps us plan the queue.</p>
+            <input class="field-input" type="date" id="completion" onchange="updateSummary()" style="max-width:320px;">
+          </div>
+
+          <!-- SCREEN 8 · PURPOSE -->
+          <div class="screen" data-step="8">
+            <p class="q-word">NINE</p>
+            <h2 class="q-title">What's this sauna <em>for</em>? <span class="req">*</span></h2>
+            <p class="q-sub">Tells us whether it's a personal build or a commercial one.</p>
+            <select class="field-select" id="sauna_purpose" onchange="updateSummary()" style="max-width:420px;">
+              <option value="">Select an option</option>
+              <option value="Personal use">Personal use</option>
+              <option value="AirBnB">AirBnB</option>
+              <option value="Glamping / holiday let">Glamping / holiday let</option>
+              <option value="Gym / wellness facility">Gym / wellness facility</option>
+              <option value="Other business use">Other business use</option>
+            </select>
+          </div>
+
+          <!-- SCREEN 9 · CONTACT -->
+          <div class="screen" data-step="9">
+            <p class="q-kicker">Almost there</p>
+            <h2 class="q-title">Where do we <em>send</em> it?</h2>
+            <p class="q-sub">Your details, so we can talk your design over with you.</p>
+            <div class="contact-grid">
+              <div>
+                <label class="field-label">Name <span class="req">*</span></label>
+                <input class="field-input" id="name" placeholder="Full Name">
+              </div>
+              <div>
+                <label class="field-label">Delivery Address</label>
+                <input class="field-input" id="address" placeholder="Delivery Address">
+              </div>
+              <div>
+                <label class="field-label">Email <span class="req">*</span></label>
+                <input class="field-input" id="email" placeholder="Email" type="email">
+              </div>
+              <div>
+                <label class="field-label">Phone <span class="req">*</span></label>
+                <input class="field-input" id="phone" placeholder="+44 7700 900000">
+              </div>
+              <div class="full">
+                <p class="field-hint">Please include your country code, starting with +. UK numbers start +44, e.g. +44 7700 900000.</p>
+              </div>
+              <div class="full">
+                <label class="field-label">Any message for us?</label>
+                <textarea class="field-input" id="message" rows="4" placeholder="Any message for us?"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="wiz-controls">
+            <button class="btn-nav" id="btnBack" onclick="goStep(currentStep - 1)">Back</button>
+            <button class="btn-nav next" id="btnNext" onclick="goStep(currentStep + 1)">Next &rsaquo;</button>
+          </div>
+
+        </div>
+
+        <!-- SUMMARY -->
+        <aside class="summary" id="summary">
+          <div class="summary-head">
+            <p class="summary-title">Your build</p>
+            <p class="summary-count" id="summaryCount">Nothing selected yet</p>
+          </div>
+          <div class="summary-inner">
+            <p class="summary-count-mobile" id="summaryCountMobile">Nothing selected yet</p>
+            <div class="summary-progress-track"><div class="summary-progress-fill" id="summaryFill"></div></div>
+            <div class="summary-rows" id="summaryRows"></div>
+            <button class="btn-submit" id="submitBtn" onclick="submitForm()">Submit my design &rsaquo;</button>
+            <p class="error-msg" id="errorMsg"></p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKSHOP INTERLUDE -->
+  <div class="interlude">
+    <div class="interlude-veil"></div>
+    <div class="interlude-copy">
+      <div class="reveal">
+        <div class="interlude-dash"></div>
+        <p class="interlude-kicker">The workshop</p>
+        <h2 class="interlude-title">Drawn with you, <em>built</em> by hand</h2>
+        <p class="interlude-body">Every build starts as a drawing shaped around you. Then our Welsh workshop builds it to that specification, by hand, made to order.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="readout-wrap" id="readoutWrap">
+    <div class="readout" id="readout">
+      <div class="readout-inner">
+        <h3>Thank you!</h3>
+        <p>Your design has been sent through. We'll be in touch shortly to talk it over.</p>
+      </div>
     </div>
   </div>
 
@@ -472,6 +631,63 @@
   window.addEventListener('resize', reportHeight);
   document.addEventListener('DOMContentLoaded', reportHeight);
   window.addEventListener('load', function(){ setTimeout(reportHeight, 300); setTimeout(reportHeight, 1200); });
+
+  /* WIZARD NAVIGATION, jump to any step, no gating */
+  const stepDefs = [
+    { name: 'Window' }, { name: 'Entrance' }, { name: 'Heater' }, { name: 'Layout' }, { name: 'Length' },
+    { name: 'Changing room' }, { name: 'Base' }, { name: 'Completed by' }, { name: 'Purpose' }, { name: 'Your details' }
+  ];
+  let currentStep = 0;
+
+  function buildNav() {
+    const nav = document.getElementById('stepsNav');
+    nav.innerHTML = stepDefs.map((s, i) =>
+      '<button type="button" class="seg" data-chip="' + i + '" aria-label="' + s.name + '" onclick="goStep(' + i + ')"><i></i></button>'
+    ).join('');
+  }
+
+  function stepHasValue(i) {
+    switch (i) {
+      case 0: return !!picked.window;
+      case 1: return !!picked.entrance;
+      case 2: return !!picked.heater;
+      case 3: return !!get('layout');
+      case 4: return !!get('length');
+      case 5: return !!get('changingroom');
+      case 6: return !!get('base');
+      case 7: return !!get('completion');
+      case 8: return !!get('sauna_purpose');
+      case 9: return !!(get('name') || get('email') || get('phone'));
+      default: return false;
+    }
+  }
+
+  function goStep(i) {
+    if (i < 0 || i > 9) return;
+    currentStep = i;
+    document.querySelectorAll('.screen').forEach(s => {
+      s.classList.toggle('active', Number(s.getAttribute('data-step')) === i);
+    });
+    refreshNav();
+    document.getElementById('btnBack').disabled = (i === 0);
+    document.getElementById('btnNext').disabled = (i === 9);
+    document.getElementById('progCount').textContent = (i === 9) ? 'Final step' : 'Step 0' + (i + 1) + ' of 09';
+    document.getElementById('progName').textContent = stepDefs[i].name;
+    const anchor = document.querySelector('.prog');
+    if (anchor) {
+      const top = anchor.getBoundingClientRect().top + window.pageYOffset - 60;
+      if (Math.abs(window.pageYOffset - top) > 40) window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    reportHeight();
+  }
+
+  function refreshNav() {
+    document.querySelectorAll('.seg').forEach((seg) => {
+      const i = Number(seg.getAttribute('data-chip'));
+      seg.classList.toggle('current', i === currentStep);
+      seg.classList.toggle('done', i !== currentStep && stepHasValue(i));
+    });
+  }
 
   const picked = {};
   function pickTile(tile) {
@@ -501,23 +717,28 @@
   function updateSummary() {
     const rowsEl = document.getElementById('summaryRows');
     const countEl = document.getElementById('summaryCount');
+    const countMobEl = document.getElementById('summaryCountMobile');
     const fillEl = document.getElementById('summaryFill');
 
     const chosen = summaryFields.filter(f => f.get());
+    let countText;
     if (chosen.length === 0) {
       rowsEl.innerHTML = '';
-      countEl.textContent = 'Nothing selected yet';
+      countText = 'Nothing selected yet';
     } else {
       rowsEl.innerHTML = chosen.map(f =>
         '<div class="summary-row"><span class="summary-k">' + f.k + '</span><span class="summary-v">' + escapeHtml(f.get()) + '</span></div>'
       ).join('');
-      countEl.textContent = chosen.length + (chosen.length === 1 ? ' choice made' : ' choices made');
+      countText = chosen.length + (chosen.length === 1 ? ' choice made' : ' choices made');
     }
+    countEl.textContent = countText;
+    countMobEl.textContent = countText;
 
     const reqTotal = summaryFields.filter(f => f.req).length;
     const reqDone = summaryFields.filter(f => f.req && f.get()).length;
     fillEl.style.width = (reqDone / reqTotal * 100) + '%';
 
+    refreshNav();
     reportHeight();
   }
 
@@ -577,25 +798,40 @@
     .then(function(res) {
       if (res.ok) {
         document.getElementById('buildLayout').style.display = 'none';
+        document.getElementById('readoutWrap').classList.add('show');
         const ro = document.getElementById('readout');
-        ro.style.display = 'block';
+        ro.classList.add('show');
         ro.scrollIntoView({ behavior: 'smooth', block: 'center' });
         reportHeight();
       } else {
         err.textContent = 'Something went wrong. Please try again in a moment, or call us directly.';
         btn.disabled = false;
-        btn.textContent = 'Submit my design';
+        btn.textContent = 'Submit my design \u203A';
         reportHeight();
       }
     })
     .catch(function() {
       err.textContent = 'Something went wrong. Please try again in a moment, or call us directly.';
       btn.disabled = false;
-      btn.textContent = 'Submit my design';
+      btn.textContent = 'Submit my design \u203A';
       reportHeight();
     });
   }
 
+  /* Reveal on scroll */
+  (function(){
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+      return;
+    }
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  buildNav();
+  goStep(0);
   updateSummary();
 </script>
 </body>
