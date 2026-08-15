@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Us Your Space, Barrel Sauna UK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#1F3D28;          /* deep matte forest, darker than before */
+    --ground-soft:#182619;
+    --forest:#2B5336;
+    --sage:#50795F;
+    --sage-pale:#8fae86;
+    --honey:#C08B41;
+    --honey-l:#D6A868;
+    --honey-d:#b07d38;
+    --maroon:#5E1F28;
+    --error-dark:#e8867a;
+
+    --white:#ffffff;
+    --ink:#2b2f29;
+    --ink-mut:#6b7164;
+    --line:#dde0d8;
+    --line-soft:#e6e9e2;
+
+    --body-pale:#dfe9df;
+    --muted-pale:#9fb3a0;
+    --hairline-dark:rgba(143,174,134,0.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--white);color:var(--ink);font-family:'Raleway',sans-serif;font-weight:300;line-height:1.55}
+
+  /* progress rail */
+  .railwrap{position:sticky;top:0;z-index:30;height:4px;background:rgba(43,83,54,0.12)}
+  .rail{height:100%;width:0%;border-radius:0 2px 2px 0;
+    background:linear-gradient(90deg,#C08B41,#E2BE85,#D6A868,#C08B41);background-size:200% 100%;
+    animation:railflow 4s linear infinite;transition:width .18s ease-out}
+  @keyframes railflow{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+  /* ===== HERO: deep matte forest ===== */
+  .hero{background:var(--ground);padding:64px 28px 56px}
+  .hero-in{max-width:840px;margin:0 auto;text-align:center}
+  .hero .ey{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--honey-l);margin-bottom:18px}
+  .hero h1{font-weight:200;font-size:48px;line-height:1.02;letter-spacing:-1.2px;margin-bottom:18px;color:#ffffff}
+  .hero .intro{color:var(--muted-pale);font-size:15px;font-weight:300;max-width:58ch;margin:0 auto}
+  .hero-photo{max-width:840px;margin:32px auto 0;border-radius:14px;overflow:hidden;border:1px solid var(--hairline-dark)}
+  .hero-photo img{width:100%;display:block;height:330px;object-fit:cover;object-position:center 55%}
+  .hero-cap{text-align:center;color:var(--muted-pale);font-size:12.5px;font-style:italic;margin-top:12px}
+
+  /* ===== WHITE SECTIONS ===== */
+  .sec{background:var(--white);padding:64px 28px 24px}
+  .sec + .sec{padding-top:24px}
+  .sec-in{max-width:720px;margin:0 auto}
+  .sechead{margin-bottom:30px}
+  .sechead .of{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--honey);margin-bottom:8px}
+  .sechead h2{font-weight:300;font-size:28px;color:var(--forest);letter-spacing:-0.4px}
+  .secrule{max-width:720px;margin:48px auto 0;border-top:1px solid var(--line-soft)}
+
+  .field{margin-bottom:26px}
+  .field:last-child{margin-bottom:0}
+  .label{display:block;font-weight:400;font-size:15px;margin-bottom:10px;color:var(--ink)}
+  .hint{display:block;font-weight:300;font-size:12.5px;color:var(--ink-mut);margin-top:-4px;margin-bottom:10px}
+  .req{color:var(--honey);font-weight:600}
+
+  .upload{position:relative;border:1.5px dashed var(--line);border-radius:14px;background:var(--white);padding:30px 16px;text-align:center;cursor:pointer;transition:box-shadow .25s,transform .2s,border-color .25s,background .25s}
+  .upload:hover{border-color:var(--honey);background:#f4f7f4;box-shadow:0 8px 22px rgba(43,83,54,.07);transform:translateY(-2px)}
+  .upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
+  .upload .ic{font-size:24px;color:var(--honey);margin-bottom:4px}
+  .upload .t{font-weight:500;font-size:14px;color:var(--sage)}
+  .upload .s{font-size:11.5px;color:var(--ink-mut);margin-top:3px}
+
+  .previews{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .thumb{position:relative;width:68px;height:68px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb .x{position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:50%;background:rgba(43,47,41,.78);color:#fff;font-size:12px;line-height:18px;text-align:center;cursor:pointer}
+
+  .opts{display:flex;flex-direction:column;gap:9px}
+  .opt{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s;font-size:14.5px;background:var(--white);color:var(--ink)}
+  .opt:hover{border-color:var(--sage-pale);transform:translateX(2px)}
+  .opt input{appearance:none;width:20px;height:20px;border:2px solid var(--line);border-radius:50%;flex:0 0 auto;position:relative}
+  .opt input:checked{border-color:var(--honey)}
+  .opt input:checked::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--honey)}
+  .opt:has(input:checked){border-color:var(--honey);background:#f4f7f4;font-weight:400}
+
+  input[type=text],input[type=email],input[type=tel],textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:14px;font-family:'Raleway',sans-serif;font-weight:300;font-size:14.5px;color:var(--ink);background:var(--white);transition:border-color .2s,box-shadow .2s}
+  input::placeholder,textarea::placeholder{color:#a7ad9f}
+  input:focus,textarea:focus{outline:none;border-color:var(--honey);box-shadow:0 0 0 3px rgba(192,139,65,.13)}
+  textarea{resize:vertical;min-height:90px}
+  .row{display:flex;gap:14px}
+  .row .field{flex:1}
+
+  /* ===== CLOSING: deep forest band ===== */
+  .close-band{background:var(--ground);padding:56px 28px;margin-top:64px}
+  .close-in{max-width:720px;margin:0 auto;text-align:center}
+  .closing{font-size:13.5px;color:var(--muted-pale);line-height:1.7;margin-bottom:28px}
+  .submit-wrap{display:flex;justify-content:center}
+  .btn{font-family:'Raleway',sans-serif;font-weight:500;font-size:15px;border:none;border-radius:12px;padding:16px 48px;cursor:pointer;transition:background .2s,opacity .2s,transform .15s,box-shadow .2s;background:var(--honey);color:#fff;letter-spacing:.3px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .btn:hover{background:var(--honey-l);transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,0,0,.42)}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+  .err{font-size:12.5px;margin-top:8px;display:none;color:var(--maroon)}
+  .close-band .err{color:var(--error-dark)}
+  .err.show{display:block}
+
+  #done{display:none;text-align:center;padding:72px 28px;background:var(--ground)}
+  #done h1{font-weight:200;font-size:34px;margin-bottom:16px;color:#ffffff}
+  #done p{color:var(--muted-pale);font-size:15.5px;max-width:58ch;margin:0 auto}
+  .tick{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--hairline-dark);color:var(--honey-l);font-size:32px;line-height:64px;margin:0 auto 20px}
+
+  @media(max-width:560px){
+    .hero{padding:44px 18px 38px}
+    .hero h1{font-size:33px}
+    .hero-photo img{height:220px}
+    .sec{padding:44px 18px 18px}
+    .sechead h2{font-size:24px}
+    .row{flex-direction:column;gap:0}
+    .close-band{padding:44px 18px;margin-top:44px}
+    .submit-wrap{justify-content:stretch}
+    .btn{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<div class="railwrap"><div class="rail" id="rail"></div></div>
+
+<form id="form" novalidate>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-in">
+      <p class="ey">Ground &amp; Decking</p>
+      <h1>Show Us Your Space</h1>
+      <p class="intro">Fill out this short form so we can capture the ground and decking area where your sauna is going. A few photos and measurements mean we can give you an accurate estimate for your base. Take a walk around the area and grab some pics as you go.</p>
+    </div>
+    <div class="hero-photo"><img src="https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a8089e7a6a03cda06854aa7.png" alt="Example of a finished barrel sauna with timber decking"></div>
+    <p class="hero-cap">An example of how your base and decking can look once finished</p>
+  </div>
+
+  <!-- 01 THE SPACE -->
+  <div class="sec">
+    <div class="sec-in">
+      <div class="sechead"><div class="of">One</div><h2>The Space</h2></div>
+      <div class="field">
+        <label class="label">The whole area where the sauna is going <span class="req">*</span></label>
+        <div class="upload" data-max="3"><input type="file" accept="image/*" multiple data-key="photo_whole_area"><div class="ic">⤒</div><div class="t">Click to upload</div><div class="s">PNG, JPEG or JPG (max 3 files)</div></div>
+        <div class="previews"></div><div class="err" id="err_photo">Please add at least one photo of the area.</div>
+      </div>
+      <div class="field">
+        <label class="label">Close-up of the ground surface, such as grass, soil, paving or decking</label>
+        <div class="upload" data-max="3"><input type="file" accept="image/*" multiple data-key="photo_surface"><div class="ic">⤒</div><div class="t">Click to upload</div><div class="s">JPEG, JPG or PNG</div></div>
+        <div class="previews"></div>
+      </div>
+      <div class="field">
+        <label class="label">The route from your gate or driveway to the spot</label>
+        <div class="upload" data-max="3"><input type="file" accept="image/*" multiple data-key="photo_route"><div class="ic">⤒</div><div class="t">Click to upload</div><div class="s">PNG, JPEG or JPG</div></div>
+        <div class="previews"></div>
+      </div>
+      <div class="field">
+        <label class="label">Any slopes, steps or height changes in the area</label>
+        <div class="upload" data-max="3"><input type="file" accept="image/*" multiple data-key="photo_slopes"><div class="ic">⤒</div><div class="t">Click to upload</div><div class="s">PNG, JPEG or JPG</div></div>
+        <div class="previews"></div>
+      </div>
+      <div class="field">
+        <label class="label">Anything in the way, such as trees, drains, sheds or overhanging branches</label>
+        <div class="upload" data-max="3"><input type="file" accept="image/*" multiple data-key="photo_obstacles"><div class="ic">⤒</div><div class="t">Click to upload</div><div class="s">PNG, JPEG or JPG</div></div>
+        <div class="previews"></div>
+      </div>
+      <div class="secrule"></div>
+    </div>
+  </div>
+
+  <!-- 02 THE GROUND -->
+  <div class="sec">
+    <div class="sec-in">
+      <div class="sechead"><div class="of">Two</div><h2>The Ground</h2></div>
+      <div class="field">
+        <label class="label">What is the ground currently made of? <span class="req">*</span></label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="ground_made_of" value="Grass/soil">Grass/soil</label>
+          <label class="opt"><input type="radio" name="ground_made_of" value="Paved or patio slabs">Paved or patio slabs</label>
+          <label class="opt"><input type="radio" name="ground_made_of" value="Concrete">Concrete</label>
+          <label class="opt"><input type="radio" name="ground_made_of" value="Existing decking">Existing decking</label>
+          <label class="opt"><input type="radio" name="ground_made_of" value="Gravel">Gravel</label>
+          <label class="opt"><input type="radio" name="ground_made_of" value="Other">Other</label>
+        </div><div class="err" id="err_ground">Please pick one.</div>
+      </div>
+      <div class="field">
+        <label class="label">Is the area level or sloped?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="level_or_sloped" value="Looks level">Looks level</label>
+          <label class="opt"><input type="radio" name="level_or_sloped" value="Slight slope">Slight slope</label>
+          <label class="opt"><input type="radio" name="level_or_sloped" value="Noticeable slope">Noticeable slope</label>
+          <label class="opt"><input type="radio" name="level_or_sloped" value="Not sure">Not sure</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label class="label">Roughly how wide is the area?</label><input type="text" name="width" placeholder="e.g. 4m"></div>
+        <div class="field"><label class="label">Roughly how deep is the area?</label><input type="text" name="depth" placeholder="e.g. 2m"></div>
+      </div>
+      <div class="field">
+        <label class="label">Is there easy access to get the sauna to the spot?</label>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="access" value="Yes, straight through">Yes, straight through</label>
+          <label class="opt"><input type="radio" name="access" value="Tight, but doable">Tight, but doable</label>
+          <label class="opt"><input type="radio" name="access" value="Difficult, narrow gate or steps">Difficult, narrow gate or steps</label>
+          <label class="opt"><input type="radio" name="access" value="Not sure">Not sure</label>
+        </div>
+      </div>
+      <div class="secrule"></div>
+    </div>
+  </div>
+
+  <!-- 03 YOUR DETAILS -->
+  <div class="sec">
+    <div class="sec-in">
+      <div class="sechead"><div class="of">Three</div><h2>Your Details</h2></div>
+      <div class="row">
+        <div class="field"><label class="label">First name <span class="req">*</span></label><input type="text" name="first_name" placeholder="Enter your first name"></div>
+        <div class="field"><label class="label">Last name <span class="req">*</span></label><input type="text" name="last_name" placeholder="Enter your last name"></div>
+      </div>
+      <div class="field"><label class="label">Email <span class="req">*</span></label><input type="email" name="email" placeholder="your@email.com"></div>
+      <div class="field">
+        <label class="label">Phone <span class="req">*</span></label>
+        <span class="hint">Please include your country code, starting with +. UK numbers start +44, for example +44 7700 900000.</span>
+        <input type="tel" name="phone" placeholder="+44 7700 900000">
+        <div class="err" id="err_phone">Please enter your phone number with your country code, starting with + (for example +44 7700 900000).</div>
+      </div>
+      <div class="field"><label class="label">Street address</label><input type="text" name="address" placeholder="Enter your full address"></div>
+      <div class="row">
+        <div class="field"><label class="label">Town or city</label><input type="text" name="city" placeholder="Enter your town or city"></div>
+        <div class="field"><label class="label">Postcode <span class="req">*</span></label><input type="text" name="postcode" placeholder="e.g. SW1A 1AA"></div>
+      </div>
+      <div class="field"><label class="label">Anything else we should know?</label><textarea name="notes" placeholder="Type your message here"></textarea></div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="close-band">
+    <div class="close-in">
+      <p class="closing">Once you have sent this over, our team will review your space. We can prepare the ground and install your base and decking for you, or if you would prefer to arrange that yourself, this gives your own contractor everything they need to get started. Any estimate we give is based on the photos and details you provide here. Depending on your space, we may come back with a few questions or arrange a site visit before confirming. Either way, we will be in touch to talk through your options.</p>
+      <div class="err" id="detailsErr" style="margin:0 0 14px">Please fill in your name, email, phone and postcode.</div>
+      <div class="submit-wrap"><button type="button" class="btn" id="submitBtn">Send it over</button></div>
+    </div>
+  </div>
+
+</form>
+
+<div id="done">
+  <div class="tick">✓</div>
+  <h1>Got it, thank you</h1>
+  <p>Your details are in. Our team will review your space and be in touch shortly to talk through your base and decking options.</p>
+</div>
+
+<script>
+const CLOUD_NAME    = "dol83asgu";
+const UPLOAD_PRESET = "Decking Form Image Uploads";
+const WEBHOOK_URL   = "https://services.leadconnectorhq.com/hooks/J378Bt0d7JvG2rXks3zo/webhook-trigger/16f14bdb-0315-4be7-91dd-643c83613451";
+
+const CLOUD_URL = "https://api.cloudinary.com/v1_1/"+CLOUD_NAME+"/image/upload";
+const fileStore={};
+
+function pingHeight(){ if(window.parent){ try{ window.parent.postMessage({height:document.body.scrollHeight},'*'); }catch(e){} } }
+
+function updateRail(){
+  const form=document.getElementById('form');
+  const rail=document.getElementById('rail');
+  if(!form||!rail||form.style.display==='none') return;
+  const rect=form.getBoundingClientRect();
+  const vh=window.innerHeight||document.documentElement.clientHeight;
+  const total=rect.height;
+  const seen=Math.min(Math.max(vh-rect.top,0),total);
+  const pct=total>0?(seen/total)*100:0;
+  rail.style.width=Math.min(100,Math.max(0,pct)).toFixed(1)+'%';
+}
+window.addEventListener('scroll',updateRail,{passive:true});
+window.addEventListener('resize',updateRail);
+
+document.querySelectorAll('.upload').forEach(box=>{
+  const input=box.querySelector('input');
+  const key=input.dataset.key;
+  const max=parseInt(box.dataset.max,10);
+  const previews=box.parentElement.querySelector('.previews');
+  fileStore[key]=[];
+  input.addEventListener('change',()=>{
+    for(const f of input.files){
+      if(fileStore[key].length>=max) break;
+      if(!f.type.startsWith('image/')) continue;
+      fileStore[key].push(f);
+    }
+    input.value=''; render();
+  });
+  function render(){
+    previews.innerHTML='';
+    fileStore[key].forEach((f,i)=>{
+      const url=URL.createObjectURL(f);
+      const t=document.createElement('div');
+      t.className='thumb';
+      t.innerHTML='<img src="'+url+'"><div class="x">×</div>';
+      t.querySelector('.x').onclick=()=>{fileStore[key].splice(i,1);render();pingHeight();};
+      previews.appendChild(t);
+    });
+    box.querySelector('.s').textContent=fileStore[key].length+' / '+max+' added';
+    pingHeight();
+  }
+});
+
+function validate(){
+  document.querySelectorAll('.err').forEach(e=>e.classList.remove('show'));
+  let ok=true, firstBad=null;
+  if(fileStore['photo_whole_area'].length===0){ document.getElementById('err_photo').classList.add('show'); ok=false; firstBad=firstBad||document.getElementById('err_photo'); }
+  if(!document.querySelector('input[name="ground_made_of"]:checked')){ document.getElementById('err_ground').classList.add('show'); ok=false; firstBad=firstBad||document.getElementById('err_ground'); }
+  const f=document.forms.form;
+  if(!(f.first_name.value.trim()&&f.last_name.value.trim()&&f.email.value.trim()&&f.phone.value.trim()&&f.postcode.value.trim())){
+    document.getElementById('detailsErr').classList.add('show'); ok=false; firstBad=firstBad||document.getElementById('detailsErr');
+  }
+  const phoneVal=f.phone.value.trim();
+  if(phoneVal && !/^\+[1-9]\d{6,14}$/.test(phoneVal.replace(/[\s()\-]/g,''))){
+    document.getElementById('err_phone').classList.add('show'); ok=false; firstBad=firstBad||document.getElementById('err_phone');
+  }
+  if(!ok&&firstBad){ firstBad.scrollIntoView({behavior:'smooth',block:'center'}); }
+  return ok;
+}
+
+async function uploadOne(file){
+  const fd=new FormData();
+  fd.append('file',file);
+  fd.append('upload_preset',UPLOAD_PRESET);
+  const res=await fetch(CLOUD_URL,{method:'POST',body:fd});
+  if(!res.ok) throw new Error('upload failed');
+  const data=await res.json();
+  return data.secure_url;
+}
+
+document.getElementById('submitBtn').onclick=async()=>{
+  if(!validate()) return;
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='Uploading photos…';
+
+  const photoUrls={};
+  try{
+    for(const key of Object.keys(fileStore)){
+      photoUrls[key]=[];
+      for(const file of fileStore[key]){
+        const url=await uploadOne(file);
+        photoUrls[key].push(url);
+      }
+    }
+  }catch(e){
+    btn.disabled=false; btn.textContent='Send it over';
+    alert('A photo failed to upload. Please check your connection and try again.');
+    return;
+  }
+
+  btn.textContent='Sending…';
+  const f=document.forms.form;
+  const payload={
+    first_name:f.first_name.value.trim(),
+    last_name:f.last_name.value.trim(),
+    email:f.email.value.trim(),
+    phone:f.phone.value.trim(),
+    address:f.address.value.trim(),
+    city:f.city.value.trim(),
+    postal_code:f.postcode.value.trim(),
+    ground_made_of:(document.querySelector('input[name="ground_made_of"]:checked')||{}).value||'',
+    level_or_sloped:(document.querySelector('input[name="level_or_sloped"]:checked')||{}).value||'',
+    width:f.width.value.trim(),
+    depth:f.depth.value.trim(),
+    access:(document.querySelector('input[name="access"]:checked')||{}).value||'',
+    notes:f.notes.value.trim(),
+    source:"Ground & Decking Intake",
+    photo_whole_area:(photoUrls.photo_whole_area||[]).join(', '),
+    photo_surface:(photoUrls.photo_surface||[]).join(', '),
+    photo_route:(photoUrls.photo_route||[]).join(', '),
+    photo_slopes:(photoUrls.photo_slopes||[]).join(', '),
+    photo_obstacles:(photoUrls.photo_obstacles||[]).join(', ')
+  };
+
+  try{
+    await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    document.getElementById('form').style.display='none';
+    document.getElementById('done').style.display='block';
+    document.getElementById('rail').style.width='100%';
+    pingHeight();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    btn.disabled=false; btn.textContent='Send it over';
+    alert('Something went wrong sending the form. Please try again.');
+  }
+};
+
+window.addEventListener('load',function(){ pingHeight(); updateRail(); });
+</script>
+</body>
+</html>
