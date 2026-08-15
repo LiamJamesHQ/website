@@ -9,13 +9,14 @@
 
 <style>
   :root{
+    --ground:#16261C;
     --forest-deep:#1F3D28; --forest:#2B5336; --green-l:#35633F;
     --mid:#417C51; --mid-l:#4A8A5B;
     --sage:#50795F; --sage-pale:#8fae86;
+    --body-pale:#dfe9df;
     --honey:#C08B41; --honey-l:#D6A868; --honey-d:#b07d38;
     --thermo:#96502B;
     --maroon:#5E1F28; --maroon-tint:#f7eced;
-    --char:#1B1917; --char-l:#242220; --char-ll:#332F2B;
     --ink:#3A4240; --ink-l:#5C6663;
     --face:'Raleway',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --hero:url("https://assets.cdn.filesafe.space/J378Bt0d7JvG2rXks3zo/media/6a78773688808720198d0c81.png");
@@ -34,12 +35,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ---------- hero (photo fading into charcoal) ---------- */
+  /* ---------- hero (photo fading into deep forest ground) ---------- */
 
   .hero {
     position: relative;
     min-height: 76vh;
-    background-color: var(--char);
+    background-color: var(--ground);
     background-image: var(--hero);
     background-size: cover;
     background-position: center 42%;
@@ -51,10 +52,10 @@
     content:"";
     position:absolute; inset:0;
     background: linear-gradient(to bottom,
-      rgba(27,25,23,0.18) 0%,
-      rgba(27,25,23,0) 38%,
-      rgba(27,25,23,0.20) 72%,
-      rgba(27,25,23,0.68) 100%);
+      rgba(22,38,28,0.18) 0%,
+      rgba(22,38,28,0) 38%,
+      rgba(22,38,28,0.20) 72%,
+      rgba(22,38,28,0.68) 100%);
   }
 
   .hero-in {
@@ -119,11 +120,11 @@
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid #e6e8e4;
-    box-shadow: 0 2px 4px rgba(27,25,23,0.04), 0 18px 48px rgba(27,25,23,0.12);
+    box-shadow: 0 2px 4px rgba(22,38,28,0.04), 0 18px 48px rgba(22,38,28,0.12);
   }
 
   .ticket-head {
-    background: var(--char);
+    background: var(--ground);
     padding: 18px 28px;
     display: flex;
     justify-content: space-between;
@@ -217,8 +218,8 @@
 
   input:focus {
     outline: none;
-    border-color: var(--char-ll);
-    box-shadow: 0 0 0 3px rgba(51,47,43,0.12);
+    border-color: var(--sage);
+    box-shadow: 0 0 0 3px rgba(80,121,95,0.16);
   }
 
   input.error { border-color: var(--maroon); background: var(--maroon-tint); }
@@ -276,7 +277,7 @@
   .processing {
     display: none;
     text-align: center;
-    color: var(--char);
+    color: var(--forest-deep);
     font-size: 0.88rem;
     margin-top: 11px;
   }
@@ -307,47 +308,57 @@
     white-space: nowrap;
   }
 
-  /* ---------- steps below the ticket ---------- */
+  /* ---------- steps band: full-bleed dark forest ---------- */
 
-  .steps { margin-top: 52px; }
+  .steps-band {
+    background: var(--ground);
+    padding: 76px 24px 84px;
+  }
+
+  .steps-in {
+    max-width: 880px;
+    margin: 0 auto;
+  }
 
   .steps-head {
     text-align: center;
     font-weight: 200;
-    color: var(--char);
-    font-size: 1.8rem;
+    color: #ffffff;
+    font-size: 2.2rem;
     letter-spacing: -0.4px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
-  .steps ol {
+  .steps-grid {
     list-style: none;
-    counter-reset: step;
-    columns: 2;
-    column-gap: 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
   }
 
-  .steps li {
-    counter-increment: step;
-    position: relative;
-    padding-left: 38px;
-    margin-bottom: 18px;
+  .steps-grid li {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(143,174,134,0.2);
+    border-radius: 12px;
+    padding: 24px 26px 22px;
     font-weight: 300;
-    font-size: 0.88rem;
-    line-height: 1.55;
-    color: var(--ink);
-    break-inside: avoid;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--body-pale);
   }
 
-  .steps li::before {
-    content: counter(step);
-    position: absolute;
-    left: 0;
-    top: -2px;
-    font-weight: 500;
+  .steps-grid li .num {
+    display: block;
+    font-weight: 700;
     font-size: 1.2rem;
-    color: var(--honey);
-    line-height: 1.4;
+    letter-spacing: 3.5px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--honey-l);
+  }
+
+  .steps-grid li p {
+    margin-top: 12px;
   }
 
   /* ---------- responsive ---------- */
@@ -391,16 +402,15 @@
     .ticket-foot .warn-tx { font-size: 0.72rem; }
     .ticket-foot .sign { font-size: 0.72rem; }
 
-    .steps { margin-top: 38px; }
-    .steps-head { font-size: 1.4rem; margin-bottom: 20px; }
-    .steps ol { columns: 1; }
-    .steps li {
-      font-size: 0.84rem;
-      line-height: 1.5;
-      padding-left: 30px;
-      margin-bottom: 13px;
+    .steps-band { padding: 52px 16px 60px; }
+    .steps-head { font-size: 1.5rem; margin-bottom: 26px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 13px; }
+    .steps-grid li {
+      font-size: 0.86rem;
+      line-height: 1.55;
+      padding: 20px 20px 18px;
     }
-    .steps li::before { font-size: 1rem; top: 0; }
+    .steps-grid li .num { font-size: 1.05rem; letter-spacing: 3px; }
   }
 </style>
 </head>
@@ -424,7 +434,7 @@
 
         <div class="ticket-head">
           <span class="label">Order Queue Reservation</span>
-          <span class="amount">£500</span>
+          <span class="amount">&pound;500</span>
         </div>
 
         <div class="ticket-body">
@@ -461,7 +471,7 @@
           </div>
 
           <button class="btn" id="payBtn" type="button" onclick="submitDeposit()">
-            <span>Reserve for £500</span>
+            <span>Reserve for &pound;500</span>
           </button>
 
           <p class="secure">Non-refundable. Deducted in full from your final invoice. Secure checkout via Stripe.</p>
@@ -476,19 +486,21 @@
 
       </div>
 
-      <div class="steps">
-        <p class="steps-head">What happens next</p>
-        <ol>
-          <li>Your £500 commitment deposit is received and your place in the queue is reserved for 72 hours.</li>
-          <li>A member of our team will contact you to confirm your final sauna specification and answer any remaining questions.</li>
-          <li>We issue your final invoice based on the agreed specification.</li>
-          <li>Once the final invoice has been paid in full, your order is approved for production.</li>
-          <li>Materials are ordered and your project is scheduled for production.</li>
-          <li>We send your job intake form to capture any final project information.</li>
-          <li>Your dedicated contact remains with you through to delivery and sign off.</li>
-        </ol>
-      </div>
+    </div>
+  </div>
 
+  <div class="steps-band">
+    <div class="steps-in">
+      <p class="steps-head">What happens next</p>
+      <ol class="steps-grid">
+        <li><span class="num">ONE</span><p>Your &pound;500 commitment deposit is received and your place in the queue is reserved for 72 hours.</p></li>
+        <li><span class="num">TWO</span><p>A member of our team will contact you to confirm your final sauna specification and answer any remaining questions.</p></li>
+        <li><span class="num">THREE</span><p>We issue your final invoice based on the agreed specification.</p></li>
+        <li><span class="num">FOUR</span><p>Once the final invoice has been paid in full, your order is approved for production.</p></li>
+        <li><span class="num">FIVE</span><p>Materials are ordered and your project is scheduled for production.</p></li>
+        <li><span class="num">SIX</span><p>We send your job intake form to capture any final project information.</p></li>
+        <li><span class="num">SEVEN</span><p>Your dedicated contact remains with you through to delivery and sign off.</p></li>
+      </ol>
     </div>
   </div>
 
